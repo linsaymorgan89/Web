@@ -1,0 +1,45 @@
+# 301 redirect map (Cloudflare Pages _redirects syntax)
+# Applied at cutover. Every legacy URL accounted for.
+
+# Junk / GSC verification page -> home
+/google234c5df4e9468961-html	/	301
+
+# Duplicate rate pages -> canonical /rates/
+/donations/	/rates/	301
+/pricing/	/rates/	301
+/pricing-2/	/rates/	301
+
+# Slug collisions and renames
+/touring/	/tour-schedule/	301
+/get-the-goods/	/blog/get-the-goods/	301
+/the-good-stuff/	/good-stuff/	301
+/blog-updates/	/blog/	301
+
+# Post slugs moving under /blog/
+/touring-colorado-sept-7-12/	/blog/touring-colorado-sept-7-12/	301
+/how-to-contact-your-escort/	/blog/how-to-contact-your-escort/	301
+/behind-closed-doors/	/blog/behind-closed-doors/	301
+/role-play-scenarios/	/blog/role-play-scenarios/	301
+/sex-worker-rights/	/blog/sex-worker-rights/	301
+/optimize-your-overnight/	/blog/optimize-your-overnight/	301
+/provider-responsibilities/	/blog/provider-responsibilities/	301
+/why-i-am-an-escort/	/blog/why-i-am-an-escort/	301
+/why-all-the-diy-pics/	/blog/why-all-the-diy-pics/	301
+/dc-tour/	/blog/dc-tour/	301
+/tips-to-ensure-a-great-session/	/blog/tips-to-ensure-a-great-session/	301
+/tips-to-ensure-a-great-session-2/	/blog/tips-to-ensure-a-great-session-2/	301
+
+# Author + category archives (were thin/duplicate) -> blog
+/author/admin/	/blog/	301
+/category/uncategorized/	/blog/	301
+/category/tours/	/blog/	301
+/category/touring/	/blog/	301
+/category/escorts/	/blog/	301
+
+# WP machinery
+/wp-content/*	https://theeroticmorgan.com/images/:splat	301
+/wp-login.php	/	301
+
+# Legacy feeds -> rss
+/feed/	/rss.xml	301
+/comments/feed/	/rss.xml	301

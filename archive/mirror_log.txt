@@ -1,0 +1,7 @@
+FAIL 2026/07/IMG_5882.jpeg
+FAIL 2026/07/IMG_5883.jpeg
+FAIL 2026/07/IMG_5913.jpeg
+FAIL 2026/07/IMG_5914.jpeg
+FAIL 2026/07/IMG_5916.jpeg
+done ok=85 skip=1 fail=5 total=91
+mirror_exit=0

@@ -1,0 +1,43 @@
+---
+import Base from '../../layouts/Base.astro';
+import { posts, categories } from '../../data/posts';
+
+const meta = {
+  title: 'Blog | The Erotic Morgan',
+  description: 'Weekly blog by Morgan Alexander: touring announcements, client etiquette guides, behind-the-scenes.',
+};
+
+
+
+
+const sorted = [...posts].sort((a, b) => b.date.localeCompare(a.date));
+
+---
+<Base title={meta.title} description={meta.description}>
+  <section class="section">
+    <div class="wrap measure">
+      <p class="eyebrow">Blog</p>
+      <h1>Weekly Blog Updates</h1>
+      <p class="lede" style="margin: 1rem 0 2.5rem;">
+        Hello everyone, welcome to my blog page. This is where you can find my latest info,
+        touring schedule and a few tips and tricks I have picked up in my years in the business.
+        I designed my posts to be easy to read, occasionally funny and most of all helpful.
+        Everything here is written by me, not AI, because I want you to see the real me.
+      </p>
+
+      {sorted.map((p) => (
+        <article style="border-bottom:1px solid var(--grey-line); padding: 2rem 0;">
+          <p class="eyebrow">{categories[p.category]}</p>
+          <h2 style="margin-bottom:0.35rem;"><a href={`/blog/${p.slug}/`} style="text-decoration:none;">{p.title}</a></h2>
+          <p style="font-size:0.85rem; color:var(--ink-soft); margin-bottom:1rem;">
+            <time datetime={p.date}>{new Date(p.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
+            &nbsp;·&nbsp; by <a href="/about-me/">Morgan Alexander</a>
+          </p>
+          {p.img && <img src={p.img} alt={p.imgAlt ?? ''} width="598" height="890" style="max-width:320px; aspect-ratio:3/4; object-fit:cover; margin-bottom:1rem;" loading="lazy" />}
+          <p class="answer">{p.answer}</p>
+          <p style="margin-top:0.75rem;"><a href={`/blog/${p.slug}/`}>Read more</a></p>
+        </article>
+      ))}
+    </div>
+  </section>
+</Base>

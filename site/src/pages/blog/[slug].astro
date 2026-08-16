@@ -1,0 +1,64 @@
+---
+import Base from '../../layouts/Base.astro';
+import { posts, categories } from '../../data/posts';
+
+export function getStaticPaths() {
+  return posts.map((p) => ({ params: { slug: p.slug }, props: { post: p } }));
+}
+const { post } = Astro.props;
+const meta = {
+  title: `${post.title} | The Erotic Morgan`,
+  description: post.answer.slice(0, 155),
+};
+const SITE = 'https://theeroticmorgan.com';
+---
+<Base title={meta.title} description={meta.description}>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    datePublished: post.date,
+    dateModified: post.date,
+    author: { '@type': 'Person', name: 'Morgan Alexander', url: SITE + '/about-me/' },
+    publisher: { '@type': 'Person', name: 'Morgan Alexander' },
+    description: post.answer,
+    mainEntityOfPage: `${SITE}/blog/${post.slug}/`,
+    image: post.img ? SITE + post.img : undefined,
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE + '/' },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: SITE + '/blog/' },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `${SITE}/blog/${post.slug}/` },
+    ],
+  })} />
+
+  <section class="section">
+    <div class="wrap measure">
+      <nav aria-label="Breadcrumb" style="font-size:0.8rem; color:var(--ink-soft); margin-bottom:1.5rem;">
+        <a href="/">Home</a> / <a href="/blog/">Blog</a> / {categories[post.category]}
+      </nav>
+      <p class="eyebrow">{categories[post.category]}</p>
+      <h1>{post.title}</h1>
+      <p style="font-size:0.85rem; color:var(--ink-soft); margin: 0.75rem 0 2rem;">
+        <time datetime={post.date}>{new Date(post.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
+        &nbsp;·&nbsp; by <a href="/about-me/">Morgan Alexander</a>
+      </p>
+
+      {post.img && <img src={post.img} alt={post.imgAlt ?? ''} width="598" height="890" style="max-width:360px; aspect-ratio:3/4; object-fit:cover; margin-bottom:2rem;" loading="eager" />}
+
+      <div class="prose">
+        <p class="answer" style="border-left:3px solid var(--pink-pale); padding-left:1rem;">{post.answer}</p>
+        {post.body.map((para) => <p style="margin-top:1.15rem;">{para}</p>)}
+      </div>
+
+      <div style="border-top:1px solid var(--grey-line); margin-top:3rem; padding-top:1.5rem; display:flex; gap:1rem; flex-wrap:wrap;">
+        <a class="btn" href="/appointment-request/">Book time with me</a>
+        <a class="btn btn-pink" href="tel:+19453972900">Call or text</a>
+      </div>
+      <p style="margin-top:2rem;"><a href="/blog/">&larr; Back to all posts</a></p>
+    </div>
+  </section>
+</Base>

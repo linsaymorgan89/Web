@@ -1,0 +1,107 @@
+---
+import Base from '../layouts/Base.astro';
+
+const meta = {
+  title: 'Appointment Request | Morgan Alexander, Dallas Escort',
+  description: 'Pre-book time with Morgan Alexander. Submit the request form 2-3 days in advance for dinner dates, overnights, and weekend trips.',
+};
+const bookingOptions = [
+  'One Hour (local) - $400.00', 'Two Hours (local) - $700.00', 'Three Hours (local) - $1,000.00',
+  'Overnight (local) - $1,500.00', 'Weekend Trip (local) - $2,500.00',
+  'One Hour (Travel) - $500.00', 'Two Hours (Travel) - $900.00', 'Three Hours (Travel) - $1,200.00',
+  'Overnight (Travel) - $2,000.00', 'Weekend Trip (Travel) - $4,000.00',
+];
+const addons = ['None', 'Role Play - $150', 'BDSM - $150', 'PSE - $200/hr', 'Massage - $250/hr', 'Dancing - $150'];
+const refSites = ['OH2', 'ECCIE', 'P411', 'TER'];
+const adSources = ['Tryst', 'Eros', 'Slixa', 'OH2/ECCIE', 'Preferred 411', 'Web Search', 'Other'];
+---
+<Base title={meta.title} description={meta.description}>
+  <section class="section">
+    <div class="wrap measure">
+      <p class="eyebrow">Pre-Booking</p>
+      <h1>Appointment Request</h1>
+      <p class="lede" style="margin: 1rem 0 2rem;">
+        This form is intended for pre-booking, at least 2-3 days in advance. It is a way to initiate
+        conversation with me, find out about my services and plan our time together. I definitely
+        recommend using this for extended appointments. For shorter notice, please text me at
+        <a href="tel:+19453972900">945-397-2900</a>.
+      </p>
+
+      <!-- Static form: posts to the Cloudflare Worker (Phase 3). Graceful before Worker deploy. -->
+      <form id="booking-form" method="POST" action="/api/appointment" style="display:grid; gap:1.25rem;">
+        <label>Name *
+          <input required name="first_name" placeholder="First" style="display:block; margin-top:0.35rem;" />
+          <input required name="last_name" placeholder="Last" style="display:block; margin-top:0.35rem;" />
+        </label>
+        <label>Email *
+          <input required type="email" name="email" style="display:block; margin-top:0.35rem;" />
+        </label>
+        <label>Phone Number (numbers only) *
+          <input required name="phone" pattern="[0-9]+" style="display:block; margin-top:0.35rem;" />
+        </label>
+        <fieldset>
+          <legend>Preferred Contact *</legend>
+          <label><input type="radio" name="pref_contact" value="Text" required /> Text</label>
+          <label><input type="radio" name="pref_contact" value="Call" /> Call</label>
+          <label><input type="radio" name="pref_contact" value="Email" /> Email</label>
+        </fieldset>
+        <label>Where Did You See My Ad?
+          <select name="ad_source" style="display:block; margin-top:0.35rem;">
+            {adSources.map((s) => <option value={s}>{s}</option>)}
+          </select>
+        </label>
+        <label>Which Appointment Would You Like To Book? *
+          <select required name="appointment" style="display:block; margin-top:0.35rem;">
+            {bookingOptions.map((o) => <option value={o}>{o}</option>)}
+          </select>
+        </label>
+        <label>Add-Ons
+          <select name="addons" style="display:block; margin-top:0.35rem;">
+            {addons.map((a) => <option value={a}>{a}</option>)}
+          </select>
+        </label>
+        <label>Explain Your Expectations For Add-On
+          <textarea name="addon_notes" rows="3" style="display:block; margin-top:0.35rem;"></textarea>
+        </label>
+        <label>Date / Time
+          <input type="date" name="date" style="display:block; margin-top:0.35rem;" />
+          <input type="time" name="time" style="display:block; margin-top:0.35rem;" />
+        </label>
+        <fieldset>
+          <legend>What Location?</legend>
+          <label><input type="radio" name="location" value="Incall" required /> Incall</label>
+          <label><input type="radio" name="location" value="Outcall" /> Outcall</label>
+        </fieldset>
+        <fieldset>
+          <legend>References (Helpful but not required)</legend>
+          <label>Member of Any Website?
+            <select name="ref_site" style="display:block; margin-top:0.35rem;">
+              <option value="">None</option>
+              {refSites.map((s) => <option value={s}>{s}</option>)}
+            </select>
+          </label>
+          <label>Handle/Member ID
+            <input name="ref_handle" style="display:block; margin-top:0.35rem;" />
+          </label>
+          <label>Provider Name
+            <input name="ref_provider" style="display:block; margin-top:0.35rem;" />
+          </label>
+          <label>Provider Phone
+            <input name="ref_phone" style="display:block; margin-top:0.35rem;" />
+          </label>
+          <label>Provider Email
+            <input name="ref_email" style="display:block; margin-top:0.35rem;" />
+          </label>
+        </fieldset>
+        <label>Any additional information or requests?
+          <textarea name="notes" rows="4" style="display:block; margin-top:0.35rem;"></textarea>
+        </label>
+        <label>Quick check: what is 13 + 2? *
+          <input required name="captcha" pattern="15" title="Answer the math question" style="display:block; margin-top:0.35rem;" />
+        </label>
+        <button class="btn" type="submit">Submit request</button>
+        <p id="form-status" role="status" style="color:var(--ink-soft);"></p>
+      </form>
+    </div>
+  </section>
+</Base>

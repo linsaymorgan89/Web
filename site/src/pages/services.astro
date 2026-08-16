@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+
+const meta = {
+  title: 'Services | Morgan Alexander, Dallas Private Companion',
+  description: 'Massage, dinner dates, travel companionship, GFE, virtual appointments, role play, custom content and more from Morgan Alexander in Dallas.',
+};
+const services = [
+  'Massage', 'Dinner Date', 'Travel Companion', 'GFE (full service)', 'PSE (inquire for details)',
+  'Virtual Appointment', 'Incall/Outcall', 'Date Planning', 'Role Play', 'Custom Content',
+  'Facetime Verification', 'Long Term Arrangements', 'Parties (erotic dancing)',
+  'Special Requests (upon approval)', 'Light BDSM (sub preferred, but can dom)',
+];
+---
+<Base title={meta.title} description={meta.description}>
+  <section class="section">
+    <div class="wrap measure">
+      <p class="eyebrow">Services</p>
+      <h1>What I Offer</h1>
+      <p class="lede" style="margin: 1rem 0 2rem;">Everything you want in a private companion, tailored to you.</p>
+      <ul class="price-list">
+        {services.map((s) => <li><span>{s}</span></li>)}
+      </ul>
+      <div class="prose" style="margin-top:2.5rem;">
+        <p class="answer">I offer many more services to accommodate the unique needs of my clients. Please call me at 945-397-2900 or put your questions in your appointment request form.</p>
+        <p>I offer many more services to accommodate the unique needs of my clients. Please call me or put your questions in your appointment request form. My number is <a href="tel:+19453972900">945-397-2900</a>.</p>
+      </div>
+    </div>
+  </section>
+</Base>

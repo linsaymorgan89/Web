@@ -1,0 +1,30 @@
+---
+import Base from '../layouts/Base.astro';
+
+const meta = {
+  title: 'Log In | The Good Stuff',
+  description: 'Log in to The Good Stuff, my lifetime-access members area with my sexiest photos and videos.',
+};
+---
+<Base title={meta.title} description={meta.description}>
+  <section class="section">
+    <div class="wrap measure">
+      <p class="eyebrow">Members</p>
+      <h1>Log In</h1>
+      <p class="lede" style="margin: 1rem 0 2rem;">Welcome back. Enter your credentials to view The Good Stuff.</p>
+
+      <form id="login-form" method="POST" action="/api/login" style="display:grid; gap:1.25rem;">
+        <label>Username or Email
+          <input required name="user" style="display:block; margin-top:0.35rem;" />
+        </label>
+        <label>Password
+          <input required type="password" name="password" style="display:block; margin-top:0.35rem;" />
+        </label>
+        <button class="btn btn-pink" type="submit">Log in</button>
+        <p id="form-status" role="status" style="color:var(--ink-soft);"></p>
+      </form>
+
+      <p style="margin-top:2rem;">Not a member yet? <a href="/good-stuff/">Learn about The Good Stuff</a> or <a href="/register/">register here</a>.</p>
+    </div>
+  </section>
+</Base>

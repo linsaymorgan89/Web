@@ -1,0 +1,62 @@
+{
+  "hero portrait": {
+    "alt": "Sophisticated woman in evening attire, soft studio lighting.",
+    "needs_review": false
+  },
+  "about portrait": {
+    "alt": "Elegant portrait of a sophisticated woman with a gentle smile.",
+    "needs_review": false
+  },
+  "gallery portrait 1": {
+    "alt": "Elegant portrait of a beautiful woman with a warm smile.",
+    "needs_review": false
+  },
+  "gallery portrait 2": {
+    "alt": "Elegant gallery portrait of a woman in stylish evening attire.",
+    "needs_review": false
+  },
+  "gallery portrait 3": {
+    "alt": "Elegant studio portrait of a woman in soft lighting",
+    "needs_review": false
+  },
+  "gallery portrait 4": {
+    "alt": "Sophisticated gallery portrait of a woman in elegant pose.",
+    "needs_review": false
+  },
+  "gallery portrait 5": {
+    "alt": "Elegant woman posing in a tasteful gallery portrait.",
+    "needs_review": false
+  },
+  "rates page portrait": {
+    "alt": "Elegant portrait of a stylish female companion.",
+    "needs_review": false
+  },
+  "services portrait": {
+    "alt": "Professional portrait of an elegant companion in evening wear.",
+    "needs_review": false
+  },
+  "blog post feature colorado garden of the gods": {
+    "alt": "Scenic red rock formations at Garden of the Gods park in Colorado.",
+    "needs_review": false
+  },
+  "blog post feature contact etiquette stock": {
+    "alt": "Woman typing a polite message on her smartphone.",
+    "needs_review": false
+  },
+  "eccie banner": {
+    "alt": "Banner graphic for the ECCIE community discussion board.",
+    "needs_review": false
+  },
+  "p411 banner": {
+    "alt": "Preferred 411 verification member status badge.",
+    "needs_review": false
+  },
+  "slixa badge": {
+    "alt": "Slixa profile verification badge",
+    "needs_review": false
+  },
+  "tryst badge": {
+    "alt": "Tryst link verification badge.",
+    "needs_review": false
+  }
+}

@@ -1,0 +1,105 @@
+---
+import Base from '../layouts/Base.astro';
+import { Image } from 'astro:assets';
+import heroImg from '../assets/images/morgan-hero.jpg';
+import aboutImg from '../assets/images/morgan-about.jpg';
+
+const meta = {
+  title: 'Morgan Alexander | Independent Escort in Dallas, TX',
+  description: 'Welcome to my world of class and style. I am Morgan Alexander, a warm Dallas private companion for dinner dates and private time. Call 945-397-2900.',
+};
+const posts = [
+  { slug: 'get-the-goods', title: 'What is "The good stuff"?', date: '2026-08-01', img: '/images/blog/good-stuff.jpg', alt: 'Elegant portrait teasing the members-only gallery.' },
+  { slug: 'touring-colorado-sept-7-12', title: 'Touring Colorado Sept 7-12', date: '2026-07-29', img: '/images/blog/garden-of-the-gods.jpg', alt: 'Garden of the Gods rock formations under a Colorado sky.' },
+  { slug: 'how-to-contact-your-escort', title: 'How To Contact Your Escort', date: '2026-07-26', img: '/images/blog/contact.jpg', alt: 'A phone on a nightstand, ready for a first text.' },
+];
+---
+<Base title={meta.title} description={meta.description}>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'The Erotic Morgan',
+    url: 'https://theeroticmorgan.com',
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Morgan Alexander',
+    alternateName: 'The Erotic Morgan',
+    description: 'Morgan Alexander, independent escort and private companion based in Dallas, Texas.',
+    url: 'https://theeroticmorgan.com',
+    telephone: '+1-945-397-2900',
+    email: 'morgan@theeroticmorgan.com',
+    sameAs: [
+      'https://www.eccie.net/providers.php?do=view&id=20698',
+      'https://www.slixa.com/texas/dallas/morgan-alexander-4',
+      'https://tryst.link/escort/morganaf',
+      'https://onlyfans.com/theeroticmorgan',
+    ],
+  })} />
+
+  <section class="section split">
+    <div>
+      <p class="eyebrow">Dallas, Texas &middot; Independent</p>
+      <h1>Morgan Alexander</h1>
+      <p class="lede" style="margin: 1.25rem 0 2rem;">
+        I try to offer everything you want in a private companion: class, style, laughter,
+        and a night you will not forget. Dinner dates, nights on the town, and our most
+        memorable time together, in private.
+      </p>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a class="btn" href="/appointment-request/">Book an appointment</a>
+        <a class="btn btn-pink" href="tel:+19453972900">Call or text 945-397-2900</a>
+      </div>
+    </div>
+    <div>
+      <Image src={heroImg} alt="Sophisticated woman in evening attire, soft studio lighting." widths={[480, 768, 1080]} sizes="(max-width: 760px) 100vw, 40vw" class="hero-img portrait" loading="eager" fetchpriority="high" />
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--bg-ivory);">
+    <div class="wrap measure prose">
+      <h2>Welcome to My Website</h2>
+      <p class="answer">My name is Morgan Alexander and I am an escort based in Dallas, TX. I am 100% independent, I offer dinner dates and private companionship, and I am easy to reach and schedule with at 945-397-2900.</p>
+      <p>My name is Morgan Alexander and I am an escort based in Dallas, TX. I try to offer everything you want in a private companion. I work hard to look my best without any surgical enhancements and I have class and style that make me a beautiful stand out in any environment. I love to go out to eat or enjoy a night on the town. A night out with me is guaranteed to be filled with laughter and fun.</p>
+      <p>Of course I know that our most important and memorable time together is spent in private. Whether it is an hour or two or three, your fantasies will come to life and you will be left feeling relaxed, refreshed and ready for whatever is next in your world. It is my job to provide what you want and need. I take that job very seriously.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>My Latest Blog Posts</h2>
+      <div class="photo-grid" style="margin-top:2rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));">
+        {posts.map((p) => (
+          <a href={`/blog/${p.slug}/`} style="text-decoration:none; color:inherit;">
+            <img src={p.img} alt={p.alt} width="598" height="890" style="aspect-ratio:3/4; object-fit:cover;" loading="lazy" />
+            <p style="font-family: var(--font-display); font-size:1.2rem; margin-top:0.8rem;">{p.title}</p>
+            <p style="font-size:0.8rem; color:var(--ink-soft);">{new Date(p.date+'T00:00:00').toLocaleDateString('en-US',{month:'long', day:'numeric', year:'numeric'})}</p>
+          </a>
+        ))}
+      </div>
+      <p style="margin-top:2rem;"><a href="/blog/">Click here for more</a></p>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--bg-ivory);">
+    <div class="wrap">
+      <h2>Verified &amp; Reviewed</h2>
+      <p style="margin: 0.5rem 0 1.5rem; max-width: 60ch;">Be sure to click the ECCIE banner to check out my real client reviews. P411 members get easy screening.</p>
+      <div class="banners">
+        <a href="https://www.eccie.net/providers.php?do=view&id=20698" rel="noopener" aria-label="Read my real client reviews on eccie.net">
+          <img src="/images/banners/eccie.gif" alt="ECCIE client reviews banner" width="468" height="60" loading="lazy" />
+        </a>
+        <a href="https://preferred411.com/admirer/register/trial?ref=5753" rel="noopener" aria-label="Preferred411 verified provider">
+          <img src="/images/banners/p411.jpg" alt="Preferred411 signup banner" width="468" height="60" loading="lazy" />
+        </a>
+        <a href="https://www.slixa.com/texas/dallas/morgan-alexander-4" rel="noopener" aria-label="Morgan Alexander on Slixa">
+          <img src="/images/banners/slixa.jpg" alt="Slixa verified badge" width="120" height="120" loading="lazy" />
+        </a>
+        <a href="https://tryst.link/escort/morganaf" rel="noopener" aria-label="Morgan on Tryst.link">
+          <img src="/images/banners/tryst.png" alt="Tryst.link badge" width="70" height="70" loading="lazy" />
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

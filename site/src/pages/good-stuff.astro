@@ -1,0 +1,59 @@
+---
+import Base from '../layouts/Base.astro';
+
+const meta = {
+  title: 'The Good Stuff | Lifetime Access to Morgan\u2019s Private Content',
+  description: 'Unlock my private content for a one-time $50. Enjoy lifetime intimate photos, monthly updates, and a free custom video. Pay via Zelle, PayPal, or CashApp.',
+};
+const perks = [
+  'My sexiest nude photos (updated monthly)',
+  'Solo videos',
+  'BG videos',
+  'Custom videos and pics (one free 1-minute custom video, all after $25)',
+];
+const faq = [
+  ['How much is access to The Good Stuff?', 'One single payment of $50 for lifetime access. No recurring charges, ever.'],
+  ['Why can\u2019t I pay with a card?', 'Because of the adult nature of the content, Stripe doesn\u2019t allow credit card payments, so payments are made directly via Zelle, Venmo, CashApp, PayPal, or Apple Pay.'],
+  ['What do I get with my membership?', 'Unlimited lifetime access to my sexiest nude photos (updated at least monthly), solo videos, BG videos taken with consenting clients, and one free custom video.'],
+];
+---
+<Base title={meta.title} description={meta.description}>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map(([q, a]) => ({
+      '@type': 'Question', name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  })} />
+  <section class="section">
+    <div class="wrap measure">
+      <p class="eyebrow">Members Only</p>
+      <h1>The Good Stuff</h1>
+      <p class="lede" style="margin: 1rem 0 2rem;">
+        Pics so hot, I did not post them on my OnlyFans. A one-time payment for lifetime access.
+        No re-occurring fees, just all the Morgan you can enjoy in private.
+      </p>
+
+      <h2 style="font-size:2.6rem;">$50 <span style="font-size:1rem; font-family:var(--font-body); letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-soft);">one time, forever</span></h2>
+
+      <ul class="price-list" style="margin: 2rem 0;">
+        {perks.map((p) => <li><span>{p}</span></li>)}
+      </ul>
+
+      <p>Because of Stripe payment restrictions, payments for access must be made directly to me via Zelle, Venmo, CashApp, PayPal, or Apple Pay. After payment is received, your membership will be activated and you can log in and view whenever you&rsquo;d like, forever.</p>
+      <p style="margin: 1.5rem 0;"><a class="btn btn-pink" href="/register/">Register for access</a>
+      &nbsp; <a href="/login/">Already a member? Log in</a></p>
+
+      <div style="border-top:1px solid var(--grey-line); margin-top:3rem; padding-top:2rem;">
+        <h2>Questions</h2>
+        {faq.map(([q, a]) => (
+          <div style="margin-bottom:1.5rem;">
+            <h3 style="font-family:var(--font-body); font-size:1rem; font-weight:500;">{q}</h3>
+            <p style="color:var(--ink-soft);">{a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

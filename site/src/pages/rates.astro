@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro';
+
+const meta = {
+  title: 'Rates & Suggested Donations | Morgan Alexander, Dallas Escort',
+  description: 'Check my suggested donations: local Dallas rates from $400/hr, touring rates, overnights, weekend trips, and add-ons. Wishlist link included.',
+};
+
+const local = [
+  ['One Hour', '400'],
+  ['Two Hours (Recommended)', '700'],
+  ['Three Hours (Dinner Date)', '1000'],
+  ['Overnight (10-12 hours)', '1500'],
+  ['Weekend Trip', '2500'],
+];
+const touring = [
+  ['One Hour', '500'],
+  ['Two Hours (Recommended)', '900'],
+  ['Three Hours (Dinner Date)', '1200'],
+  ['Overnight (10-12 hours)', '2000'],
+  ['Weekend Trip', '4000'],
+];
+const addons = [
+  ['Role Play', '150'],
+  ['PSE (call for details)', '200/hr'],
+  ['Massage (can be booked alone)', '250/hr'],
+  ['BDSM', '150'],
+  ['Dancing (Parties or Private)', '150'],
+];
+---
+<Base title={meta.title} description={meta.description}>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [{
+      '@type': 'Question',
+      name: 'What are Morgan Alexander\u2019s rates in Dallas?',
+      acceptedAnswer: { '@type': 'Answer', text: 'Local Dallas rates start at $400 for one hour, $700 for two hours (recommended), $1,000 for a three-hour dinner date, $1,500 overnight, and $2,500 for a weekend trip. Touring rates are higher.' },
+    }],
+  })} />
+  <section class="section">
+    <div class="wrap measure">
+      <p class="eyebrow">Rates</p>
+      <h1>Suggested Donations</h1>
+      <p class="lede" style="margin: 1rem 0 2.5rem;">
+        If you really want to make our time together special, check out my wishlist for gift ideas:
+        <a href="https://mywishlist.online/w/rsv35c/morgs-wishlist" rel="noopener">Morg&rsquo;s Wishlist</a>.
+      </p>
+
+      <h2 id="local">Local Rates</h2>
+      <p style="color:var(--ink-soft);">Dallas only</p>
+      <ul class="price-list" style="margin: 1rem 0 2.5rem;">
+        {local.map(([name, price]) => <li><span>{name}</span><span class="price">${price}</span></li>)}
+      </ul>
+
+      <h2 id="touring">Touring Rates</h2>
+      <p style="color:var(--ink-soft);">Helps cover touring expenses</p>
+      <ul class="price-list" style="margin: 1rem 0 2.5rem;">
+        {touring.map(([name, price]) => <li><span>{name}</span><span class="price">${price}</span></li>)}
+      </ul>
+
+      <h2 id="addons">Add-Ons</h2>
+      <p style="color:var(--ink-soft);">Items in addition to the selected hourly rate</p>
+      <ul class="price-list" style="margin: 1rem 0 2.5rem;">
+        {addons.map(([name, price]) => <li><span>{name}</span><span class="price">${price}</span></li>)}
+      </ul>
+
+      <p><a class="btn" href="/appointment-request/">Request an appointment</a></p>
+    </div>
+  </section>
+</Base>

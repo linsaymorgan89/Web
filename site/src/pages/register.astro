@@ -1,0 +1,41 @@
+---
+import Base from '../layouts/Base.astro';
+
+const meta = {
+  title: 'Register | The Good Stuff Access',
+  description: 'Register for lifetime access to The Good Stuff. One-time $50 payment via Zelle, Venmo, CashApp, PayPal, or Apple Pay. No recurring fees.',
+};
+---
+<Base title={meta.title} description={meta.description}>
+  <section class="section">
+    <div class="wrap measure">
+      <p class="eyebrow">Members</p>
+      <h1>Register</h1>
+      <p class="lede" style="margin: 1rem 0 2rem;">Create your account, send the one-time $50 payment, and I will activate your lifetime access.</p>
+
+      <form id="register-form" method="POST" action="/api/register" style="display:grid; gap:1.25rem;">
+        <label>Username *
+          <input required name="username" minlength="3" style="display:block; margin-top:0.35rem;" />
+        </label>
+        <label>Email *
+          <input required type="email" name="email" style="display:block; margin-top:0.35rem;" />
+        </label>
+        <label>Password *
+          <input required type="password" name="password" minlength="8" style="display:block; margin-top:0.35rem;" />
+        </label>
+        <label>Confirm Password *
+          <input required type="password" name="password2" minlength="8" style="display:block; margin-top:0.35rem;" />
+        </label>
+        <button class="btn btn-pink" type="submit">Register</button>
+        <p id="form-status" role="status" style="color:var(--ink-soft);"></p>
+      </form>
+
+      <div class="prose" style="margin-top:2.5rem;">
+        <h2>Payment</h2>
+        <p class="answer">After registering, send the one-time $50 payment to 469-274-7852 via Zelle, Venmo, CashApp, PayPal, or Apple Pay. Access is activated manually once payment is received, usually the same day.</p>
+        <p>Because of the adult nature of the content, card processors like Stripe do not allow payments, so payment is made directly to me. Your membership is lifetime: no recurring charges, ever.</p>
+        <p>Already registered? <a href="/login/">Log in here</a>.</p>
+      </div>
+    </div>
+  </section>
+</Base>

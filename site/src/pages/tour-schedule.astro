@@ -1,0 +1,47 @@
+---
+import Base from '../layouts/Base.astro';
+
+const meta = {
+  title: 'Tour Schedule | Morgan Alexander, Dallas Escort',
+  description: 'Check my upcoming tour schedule for dates, cities, and touring rates. Enjoy a pre-booking discount when you plan our special time together today.',
+};
+const tours = [
+  {
+    city: 'Colorado',
+    dates: 'September 7-12, 2026',
+    blurb: 'Denver first, then wherever the adventure takes me. Outcall anywhere in the state; 2-hour minimum beyond 40 miles. $40 pre-book discount.',
+    status: 'upcoming',
+  },
+];
+---
+<Base title={meta.title} description={meta.description}>
+  <section class="section">
+    <div class="wrap measure">
+      <p class="eyebrow">Touring</p>
+      <h1>Tour Schedule</h1>
+      <p class="lede" style="margin: 1rem 0 2rem;">I tour several times a year. Touring rates apply, and pre-booked appointments get a discount.</p>
+
+      {tours.map((t) => (
+        <div style="border:1px solid var(--grey-line); padding:1.75rem; margin-bottom:1.5rem;">
+          <p class="eyebrow">{t.status === 'upcoming' ? 'Upcoming Tour' : 'Past Tour'}</p>
+          <h2 style="margin-bottom:0.25rem;">{t.city}</h2>
+          <p style="color:var(--ink-soft);">{t.dates}</p>
+          <p style="margin-top:0.75rem;">{t.blurb}</p>
+          <p style="margin-top:1rem;"><a class="btn btn-pink" href="/appointment-request/">Pre-book and save $40</a></p>
+        </div>
+      ))}
+
+      <div class="prose" style="margin-top:2.5rem;">
+        <h2>Touring Rates</h2>
+        <ul class="price-list">
+          <li><span>One Hour</span><span class="price">$500</span></li>
+          <li><span>Two Hours (Recommended)</span><span class="price">$900</span></li>
+          <li><span>Three Hours (Dinner Date)</span><span class="price">$1,200</span></li>
+          <li><span>Overnight (10-12 hours)</span><span class="price">$2,000</span></li>
+          <li><span>Weekend Trip</span><span class="price">$4,000</span></li>
+        </ul>
+        <p style="margin-top:1.5rem;"><a href="/rates/">Full rates and add-ons</a></p>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,53 @@
+---
+import Base from '../layouts/Base.astro';
+
+const meta = {
+  title: 'Contact Morgan Alexander | Dallas Escort, 945-397-2900',
+  description: 'Reach Morgan Alexander by phone or text at 945-397-2900, email morgan@theeroticmorgan.com, or find me on OnlyFans. Pre-booking recommended.',
+};
+const faq = [
+  ['How do I contact Morgan?', 'Text or call 945-397-2900 for the fastest response. For longer appointments, use the appointment request form 2-3 days in advance. Email morgan@theeroticmorgan.com works too.'],
+  ['What should my first text say?', 'Include your name, where you saw my ad, whether you want incall or outcall, and the date and time you have in mind. That single message gets the fastest yes.'],
+  ['Do you require screening or deposits?', 'No references or deposits required for standard appointments (over nights and weekend trips excepted). P411 or OH2 membership helps but is not necessary.'],
+];
+---
+<Base title={meta.title} description={meta.description}>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: 'Contact Morgan Alexander',
+    url: 'https://theeroticmorgan.com/contact/',
+  })} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map(([q, a]) => ({
+      '@type': 'Question', name: q,
+      acceptedAnswer: { '@type': 'Answer', text: a },
+    })),
+  })} />
+  <section class="section">
+    <div class="wrap measure">
+      <p class="eyebrow">Contact</p>
+      <h1>Get In Touch</h1>
+      <p class="lede" style="margin: 1rem 0 2rem;">I am easy to get a hold of and schedule with.</p>
+
+      <ul class="price-list">
+        <li><span>Phone (fastest)</span><a href="tel:+19453972900">(945) 397-2900</a></li>
+        <li><span>Email</span><a href="mailto:morgan@theeroticmorgan.com">morgan@theeroticmorgan.com</a></li>
+        <li><span>OnlyFans</span><a href="https://onlyfans.com/theeroticmorgan" rel="noopener">onlyfans.com/theeroticmorgan</a></li>
+        <li><span>Pre-booking</span><a href="/appointment-request/">Appointment request form</a></li>
+      </ul>
+
+      <div style="border-top:1px solid var(--grey-line); margin-top:3rem; padding-top:2rem;">
+        <h2>Questions</h2>
+        {faq.map(([q, a]) => (
+          <div style="margin-bottom:1.5rem;">
+            <h3 style="font-family:var(--font-body); font-size:1rem; font-weight:500;">{q}</h3>
+            <p style="color:var(--ink-soft);">{a}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
