@@ -167,6 +167,7 @@ const meta = {
       tab.addEventListener('click', (e) => {
         document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.tab-pane').forEach(p => p.style.display = 'none');
         e.target.classList.add('active');
         const tabId = e.target.dataset.tab;
         const pane = document.getElementById('tab-' + tabId);
@@ -448,7 +449,9 @@ const meta = {
 
     // Tours tab -> array of { city, dates, blurb, status }.
     function serializeTours() {
+      const container = document.getElementById('tours-loading');
       const tours = [];
+      if (!container || !container.dataset.loaded) return null;
       container.querySelectorAll('input[name$=".city"]').forEach(cityInput => {
         const m = cityInput.name.match(/^tours\.(\d+)\.city$/);
         if (!m) return;

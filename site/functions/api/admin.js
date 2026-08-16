@@ -9,8 +9,13 @@
  * KV namespace: TEM_USERS (reuse existing)
  * Keys: admin:site, admin:rates, admin:tours, admin:posts, admin:publish_pending (boolean timestamp)
  *
- * Note: On first load, returns empty structures; Morgan must edit and publish to seed KV.
+ * Note: On first load, returns seed data from src/data JSON files if KV is empty.
  */
+
+import siteSeed from '../../src/data/site.json';
+import ratesSeed from '../../src/data/rates.json';
+import toursSeed from '../../src/data/tours.json';
+import postsSeed from '../../src/data/posts.json';
 
 export async function onRequest(context) {
   const { request, env } = context;
@@ -46,13 +51,27 @@ export async function onRequest(context) {
 async function handleExport(env) {
   // Export all admin content for the deployer script
   // Reads admin:site, admin:rates, admin:tours, admin:posts from KV
+  // Falls back to seed data if not yet published
   // Returns combined JSON
   try {
     const result = {};
-    for (const model of ['site', 'rates', 'tours', 'posts']) {
-      const value = await env.TEM_USERS.get('admin:' + model);
-      result[model] = value ? JSON.parse(value) : null;
-    }
+    
+    // site
+    let value = await env.TEM_USERS.get('admin:site');
+    result.site = value ? JSON.parse(value) : siteSeed;
+    
+    // rates
+    value = await env.TEM_USERS.get('admin:rates');
+    result.rates = value ? JSON.parse(value) : ratesSeed;
+    
+    // tours
+    value = await env.TEM_USERS.get('admin:tours');
+    result.tours = value ? JSON.parse(value) : toursSeed;
+    
+    // posts
+    value = await env.TEM_USERS.get('admin:posts');
+    result.posts = value ? JSON.parse(value) : postsSeed;
+    
     // Include publish timestamp if set
     const pending = await env.TEM_USERS.get('admin:publish_pending');
     result.publishPending = pending ? parseInt(pending, 10) : 0;
@@ -63,10 +82,7 @@ async function handleExport(env) {
 }
 
 async function handleGet(env, model) {
-  // For now, we need to import the local JSON since we can't reach it from Workers.
-  // In production, after first publish, everything lives in KV.
-  // On first load, the admin will see empty data and need to "publish" once to seed KV.
-  // For simplicity, we return a structured response that tells the client what models exist.
+  // Load from KV, or fall back to seed data if not yet published
   const available = ['site', 'rates', 'tours', 'posts'];
   if (model && !available.includes(model)) {
     return Response.json({ error: 'Invalid model' }, { status: 400 });
@@ -79,22 +95,15 @@ async function handleGet(env, model) {
       if (value) {
         return Response.json(JSON.parse(value));
       } else {
-        // KV not yet seeded: return empty structure
+        // KV not yet seeded: return seed data from JSON files
         if (model === 'site') {
-          return Response.json({
-            phone: '', email: '', onlyfans: '',
-            goodwill: { price: '50', tagline: 'one time, forever' },
-            home: { eyebrow: '', lede: '' }
-          });
+          return Response.json(siteSeed);
         } else if (model === 'rates') {
-          return Response.json({
-            wishlistUrl: '', wishlistLabel: '',
-            local: [], touring: [], addons: []
-          });
+          return Response.json(ratesSeed);
         } else if (model === 'tours') {
-          return Response.json([]);
+          return Response.json(toursSeed);
         } else if (model === 'posts') {
-          return Response.json({ posts: [], categories: {} });
+          return Response.json(postsSeed);
         }
       }
     } else {

@@ -1,0 +1,104 @@
+[2026-08-16 22:37:59] Starting publish pipeline...
+[2026-08-16 22:37:59] Fetching data from https://tem.tacavar.com/api/admin?action=export
+[2026-08-16 22:37:59] New publish pending detected (timestamp: 0)
+[2026-08-16 22:38:01] Writing updated data files...
+[2026-08-16 22:38:01] Data files updated
+[2026-08-16 22:38:01] Building site with bun...
+$ astro build
+
+Auto-generating collections for folders in "src/content/" that are not defined as collections.
+This is deprecated, so you should define these collections yourself in "src/content.config.ts".
+The following collections have been auto-generated: posts
+
+22:38:02 [content] Syncing content
+22:38:02 [WARN] [glob-loader] No files found matching "**/*.md,!**/_*/**/*.md,!**/_*.md" in directory "src/content/posts"
+22:38:02 [content] Synced content
+22:38:02 [types] Generated 64ms
+22:38:02 [build] output: "static"
+22:38:02 [build] mode: "static"
+22:38:02 [build] directory: /home/tacavar/workspaces/theeroticmorgan-rebuild/site/dist/
+22:38:02 [build] Collecting build info...
+22:38:02 [build] ✓ Completed in 105ms.
+22:38:02 [build] Building static entrypoints...
+22:38:04 [vite] ✓ built in 1.61s
+22:38:04 [build] ✓ Completed in 1.66s.
+
+ building client (vite) 
+22:38:04 [vite] transforming...
+22:38:04 [vite] ✓ 5 modules transformed.
+22:38:04 [vite] rendering chunks...
+22:38:04 [vite] computing gzip size...
+22:38:04 [vite] dist/_astro/login.astro_astro_type_script_index_0_lang.C5s5arRo.js                 0.08 kB │ gzip: 0.10 kB
+22:38:04 [vite] dist/_astro/register.astro_astro_type_script_index_0_lang.C5s5arRo.js              0.08 kB │ gzip: 0.10 kB
+22:38:04 [vite] dist/_astro/appointment-request.astro_astro_type_script_index_0_lang.7lZMBWu7.js   0.73 kB │ gzip: 0.46 kB
+22:38:04 [vite] dist/_astro/admin.astro_astro_type_script_index_0_lang.BZuXchRP.js                10.48 kB │ gzip: 2.69 kB
+22:38:04 [vite] ✓ built in 61ms
+
+ generating static routes 
+22:38:04 ▶ src/pages/2257.astro
+22:38:04   └─ /2257/index.html (+10ms) 
+22:38:04 ▶ src/pages/404.astro
+22:38:04   └─ /404.html (+4ms) 
+22:38:04 ▶ src/pages/about-me.astro
+22:38:04   └─ /about-me/index.html (+7ms) 
+22:38:04 ▶ src/pages/admin.astro
+22:38:04   └─ /admin/index.html (+3ms) 
+22:38:04 ▶ src/pages/appointment-request.astro
+22:38:04   └─ /appointment-request/index.html (+4ms) 
+22:38:04 ▶ src/pages/blog/[slug].astro
+22:38:04   ├─ /blog/get-the-goods/index.html (+3ms) 
+22:38:04   ├─ /blog/touring-colorado-sept-7-12/index.html (+2ms) 
+22:38:04   ├─ /blog/how-to-contact-your-escort/index.html (+2ms) 
+22:38:04   ├─ /blog/behind-closed-doors/index.html (+7ms) 
+22:38:04   ├─ /blog/role-play-scenarios/index.html (+3ms) 
+22:38:04   ├─ /blog/tips-to-ensure-a-great-session-2/index.html (+1ms) 
+22:38:04   ├─ /blog/tips-to-ensure-a-great-session/index.html (+1ms) 
+22:38:04   ├─ /blog/sex-worker-rights/index.html (+1ms) 
+22:38:04   ├─ /blog/optimize-your-overnight/index.html (+2ms) 
+22:38:04   ├─ /blog/provider-responsibilities/index.html (+1ms) 
+22:38:04   ├─ /blog/why-i-am-an-escort/index.html (+2ms) 
+22:38:04   ├─ /blog/why-all-the-diy-pics/index.html (+2ms) 
+22:38:04   └─ /blog/dc-tour/index.html (+2ms) 
+22:38:04 ▶ src/pages/blog/index.astro
+22:38:04   └─ /blog/index.html (+3ms) 
+22:38:04 ▶ src/pages/contact.astro
+22:38:04   └─ /contact/index.html (+5ms) 
+22:38:04 ▶ src/pages/good-stuff.astro
+22:38:04   └─ /good-stuff/index.html (+2ms) 
+22:38:04 ▶ src/pages/index.astro
+22:38:04   └─ /index.html (+4ms) 
+22:38:04 ▶ src/pages/login.astro
+22:38:04   └─ /login/index.html (+2ms) 
+22:38:04 ▶ src/pages/photo-gallery.astro
+22:38:04   └─ /photo-gallery/index.html (+2ms) 
+22:38:04 ▶ src/pages/privacy.astro
+22:38:04   └─ /privacy/index.html (+2ms) 
+22:38:04 ▶ src/pages/rates.astro
+22:38:04   └─ /rates/index.html (+2ms) 
+22:38:04 ▶ src/pages/register.astro
+22:38:04   └─ /register/index.html (+2ms) 
+22:38:04 λ src/pages/rss.xml.js
+22:38:04   └─ /rss.xml (+11ms) 
+22:38:04 ▶ src/pages/services.astro
+22:38:04   └─ /services/index.html (+2ms) 
+22:38:04 ▶ src/pages/terms.astro
+22:38:04   └─ /terms/index.html (+1ms) 
+22:38:04 ▶ src/pages/tour-schedule.astro
+22:38:04   └─ /tour-schedule/index.html (+7ms) 
+22:38:04 ✓ Completed in 186ms.
+
+ generating optimized images 
+22:38:04   ▶ /_astro/morgan-about.ConIaVBb_1Rd4G6.webp (reused cache entry) (+1ms) (1/8)
+22:38:04   ▶ /_astro/morgan-hero.Dq0duGAE_GkQwR.webp (reused cache entry) (+1ms) (2/8)
+22:38:04   ▶ /_astro/morgan-hero.Dq0duGAE_Z2e95MW.webp (reused cache entry) (+0ms) (3/8)
+22:38:04   ▶ /_astro/morgan-about.ConIaVBb_1nUC8u.webp (reused cache entry) (+1ms) (4/8)
+22:38:04   ▶ /_astro/morgan-hero.Dq0duGAE_2uElgp.webp (reused cache entry) (+1ms) (5/8)
+22:38:04   ▶ /_astro/morgan-about.ConIaVBb_ZyY31G.webp (reused cache entry) (+1ms) (6/8)
+22:38:04   ▶ /_astro/morgan-hero.Dq0duGAE_ZqGm01.webp (reused cache entry) (+1ms) (7/8)
+22:38:04   ▶ /_astro/morgan-about.ConIaVBb_oT56j.webp (reused cache entry) (+1ms) (8/8)
+22:38:04 ✓ Completed in 5ms.
+
+22:38:04 [@astrojs/sitemap] `sitemap-index.xml` created at `dist`
+22:38:04 [build] 30 page(s) built in 2.07s
+22:38:04 [build] Complete!
+[2026-08-16 22:38:04] Build completed successfully
