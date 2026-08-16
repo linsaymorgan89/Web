@@ -65,9 +65,41 @@ body {
 /* ---------- layout ---------- */
 main { min-height: 60vh; }
 .section { padding: var(--space-section) clamp(1.25rem, 5vw, 4rem); }
-.wrap { max-width: 72rem; margin: 0 auto; }
+.wrap { max-width: 66rem; margin: 0 auto; }
 .measure { max-width: var(--measure); }
 
+/* hero: 5/7 split, image fills its column edge-to-edge, text vertically centered against it */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 0;
+  align-items: stretch;
+  max-width: 66rem;
+  margin: 0 auto;
+}
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(2rem, 6vh, 4rem) clamp(1.5rem, 5vw, 5rem) clamp(2rem, 6vh, 4rem) 0;
+}
+.hero-media { min-width: 0; }
+.hero-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 30rem;
+  object-fit: cover;
+  aspect-ratio: 3 / 4;
+}
+@media (max-width: 760px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-copy { padding: 2.5rem 0 1.5rem; order: 2; }
+  .hero-media { order: 1; }
+  .hero-media img { min-height: 0; max-height: 68vh; }
+}
+
+/* generic two-column split for inner pages */
 .split {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);

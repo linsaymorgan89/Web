@@ -38,22 +38,26 @@ const posts = [
     ],
   })} />
 
-  <section class="section split">
-    <div>
-      <p class="eyebrow">Dallas, Texas &middot; Independent</p>
-      <h1>Morgan Alexander</h1>
-      <p class="lede" style="margin: 1.25rem 0 2rem;">
-        I try to offer everything you want in a private companion: class, style, laughter,
-        and a night you will not forget. Dinner dates, nights on the town, and our most
-        memorable time together, in private.
-      </p>
-      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-        <a class="btn" href="/appointment-request/">Book an appointment</a>
-        <a class="btn btn-pink" href="tel:+19453972900">Call or text 945-397-2900</a>
+  <section class="section" style="padding-bottom:0;">
+    <div class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Dallas, Texas &middot; Independent</p>
+        <h1>Morgan<br />Alexander</h1>
+        <p class="lede" style="margin: 1.5rem 0 2.25rem; max-width: 34ch;">
+          Class, style, laughter, and a night you will not forget. Dinner dates,
+          nights on the town, and our most memorable time together, in private.
+        </p>
+        <div style="display:flex; gap:0.9rem; flex-wrap:wrap;">
+          <a class="btn" href="/appointment-request/">Book an appointment</a>
+          <a class="btn btn-pink" href="tel:+19453972900">Call or text</a>
+        </div>
+        <p style="margin-top:2.25rem; font-size:0.82rem; color:var(--ink-soft); letter-spacing:0.02em;">
+          Reviewed on ECCIE &middot; Verified on P411, Slixa &amp; Tryst
+        </p>
       </div>
-    </div>
-    <div>
-      <Image src={heroImg} alt="Sophisticated woman in evening attire, soft studio lighting." widths={[480, 768, 1080]} sizes="(max-width: 760px) 100vw, 40vw" class="hero-img portrait" loading="eager" fetchpriority="high" />
+      <div class="hero-media">
+        <Image src={heroImg} alt="Sophisticated woman in evening attire, soft studio lighting." widths={[480, 768, 1080, 1400]} sizes="(max-width: 760px) 100vw, 58vw" loading="eager" fetchpriority="high" />
+      </div>
     </div>
   </section>
 
