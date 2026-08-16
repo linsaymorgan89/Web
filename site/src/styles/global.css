@@ -92,6 +92,8 @@ body {
 
 @media (max-width: 760px) {
   .nav-toggle { display: flex; }
+  /* header paints above the drawer so the hamburger stays tappable */
+  .site-header { position: relative; z-index: 950; background: var(--bg); }
   .site-nav {
     position: fixed;
     inset: 0;
@@ -114,6 +116,27 @@ body {
     letter-spacing: 0.3em;
   }
   .site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--pink-deep); }
+  /* close X inside the drawer, pinned to the same spot the hamburger occupies */
+  .nav-close {
+    position: fixed;
+    top: 1.35rem;
+    right: clamp(1.25rem, 5vw, 4rem);
+    z-index: 960;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.6rem;
+    line-height: 1;
+    color: var(--ink);
+  }
+}
+@media (min-width: 761px) {
+  .nav-close { display: none; }
 }
 
 /* ---------- layout ---------- */

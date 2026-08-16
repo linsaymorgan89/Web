@@ -44,6 +44,7 @@ const SITE = 'https://theeroticmorgan.com';
   <header class="site-header">
     <a class="wordmark" href="/">The Erotic <span>Morgan</span></a>
     <nav class="site-nav" aria-label="Main">
+      <button class="nav-close" id="nav-close" aria-label="Close menu">&times;</button>
       <a href="/">Home</a>
       <a href="/about-me/">About</a>
       <a href="/photo-gallery/">Gallery</a>
@@ -125,6 +126,7 @@ const SITE = 'https://theeroticmorgan.com';
     (function () {
       var btn = document.getElementById('nav-toggle');
       var nav = document.querySelector('.site-nav');
+      var xBtn = document.getElementById('nav-close');
       if (!btn || !nav) return;
       function close() {
         nav.classList.remove('open');
@@ -132,14 +134,27 @@ const SITE = 'https://theeroticmorgan.com';
         btn.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
       }
+      function open() {
+        nav.classList.add('open');
+        btn.classList.add('active');
+        btn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+      }
       btn.addEventListener('click', function () {
-        var open = nav.classList.toggle('open');
-        btn.classList.toggle('active', open);
-        btn.setAttribute('aria-expanded', String(open));
-        document.body.style.overflow = open ? 'hidden' : '';
+        nav.classList.contains('open') ? close() : open();
+      });
+      if (xBtn) xBtn.addEventListener('click', close);
+      // tapping the drawer backdrop (not a link, not a button) closes it
+      nav.addEventListener('click', function (e) {
+        if (e.target === nav) close();
       });
       nav.addEventListener('click', function (e) { if (e.target.closest('a')) close(); });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+      // Android back button closes the drawer instead of leaving the page
+      window.addEventListener('popstate', function () { if (nav.classList.contains('open')) close(); });
+      btn.addEventListener('click', function () {
+        if (nav.classList.contains('open')) history.pushState({ nav: 1 }, '');
+      }, true);
     })();
   </script>
 </body>
