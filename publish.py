@@ -13,7 +13,7 @@ import hashlib
 import re
 from pathlib import Path
 from datetime import datetime
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 from urllib.error import URLError
 
 # Configuration
@@ -39,7 +39,8 @@ def log(message):
 def fetch_api():
     """Fetch data from the admin API."""
     try:
-        with urlopen(API_URL, timeout=10) as response:
+        req = Request(API_URL, headers={"User-Agent": "Mozilla/5.0 (compatible; theeroticmorgan-publish-bot/1.0)"})
+        with urlopen(req, timeout=10) as response:
             return json.loads(response.read().decode())
     except URLError as e:
         log(f"ERROR: Failed to fetch from API: {e}")
