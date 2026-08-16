@@ -102,3 +102,200 @@ The following collections have been auto-generated: posts
 22:38:04 [build] 30 page(s) built in 2.07s
 22:38:04 [build] Complete!
 [2026-08-16 22:38:04] Build completed successfully
+[2026-08-16 22:38:05] Committing changes...
+[2026-08-16 22:38:05] Deploying to Cloudflare Pages...
+
+ ⛅️ wrangler 4.123.0
+────────────────────
+✨ Compiled Worker successfully
+Uploading... (65/67)
+Uploading... (66/67)
+Uploading... (67/67)
+✨ Success! Uploaded 2 files (65 already uploaded) (0.96 sec)
+
+✨ Uploading _redirects
+✨ Uploading Functions bundle
+🌎 Deploying...
+✨ Deployment complete! Take a peek over at https://a04a9212.theeroticmorgan.pages.dev
+[2026-08-16 22:38:14] Deployment completed successfully
+[2026-08-16 22:38:14] Published successfully! Marker updated to timestamp 0
+[2026-08-16 22:38:45] Starting publish pipeline...
+[2026-08-16 22:38:45] Fetching data from https://tem.tacavar.com/api/admin?action=export
+[2026-08-16 22:38:45] No new publishes pending (last: 0, current: 0). Skipping.
+[2026-08-16 22:38:54] Starting publish pipeline...
+[2026-08-16 22:38:54] Fetching data from https://tem.tacavar.com/api/admin?action=export
+[2026-08-16 22:38:54] No new publishes pending (last: 0, current: 0). Skipping.
+[2026-08-16 22:39:06] Starting publish pipeline...
+[2026-08-16 22:39:06] Fetching data from https://tem.tacavar.com/api/admin?action=export
+[2026-08-16 22:39:06] New publish pending detected (timestamp: 1786919944375)
+[2026-08-16 22:39:06] Processing images...
+[2026-08-16 22:39:06] Writing updated data files...
+[2026-08-16 22:39:06] Data files updated
+[2026-08-16 22:39:06] Building site with bun...
+[2026-08-16 22:39:10] ERROR: Build failed
+[2026-08-16 22:39:10] 22:39:08 [content] Syncing content
+22:39:08 [WARN] [glob-loader] No files found matching "**/*.md,!**/_*/**/*.md,!**/_*.md" in directory "src/content/posts"
+22:39:08 [content] Synced content
+22:39:08 [types] Generated 54ms
+22:39:08 [build] output: "static"
+22:39:08 [build] mode: "static"
+22:39:08 [build] directory: /home/tacavar/workspaces/theeroticmorgan-rebuild/site/dist/
+22:39:08 [build] Collecting build info...
+22:39:08 [build] ✓ Completed in 93ms.
+22:39:08 [build] Building static entrypoints...
+22:39:09 [vite] ✓ built in 1.52s
+22:39:09 [build] ✓ Completed in 1.56s.
+
+ building client (vite) 
+22:39:09 [vite] transforming...
+22:39:09 [vite] ✓ 5 modules transformed.
+22:39:09 [vite] rendering chunks...
+22:39:09 [vite] computing gzip size...
+22:39:09 [vite] dist/_astro/login.astro_astro_type_script_index_0_lang.C5s5arRo.js                 0.08 kB │ gzip: 0.10 kB
+22:39:09 [vite] dist/_astro/register.astro_astro_type_script_index_0_lang.C5s5arRo.js              0.08 kB │ gzip: 0.10 kB
+22:39:09 [vite] dist/_astro/appointment-request.astro_astro_type_script_index_0_lang.7lZMBWu7.js   0.73 kB │ gzip: 0.46 kB
+22:39:09 [vite] dist/_astro/admin.astro_astro_type_script_index_0_lang.BZuXchRP.js                10.48 kB │ gzip: 2.69 kB
+22:39:09 [vite] ✓ built in 54ms
+
+ generating static routes 
+22:39:09 ▶ src/pages/2257.astro
+22:39:09   └─ /2257/index.html (+10ms) 
+22:39:09 ▶ src/pages/404.astro
+22:39:09   └─ /404.html (+3ms) 
+22:39:09 ▶ src/pages/about-me.astro
+22:39:09   └─ /about-me/index.html (+8ms) 
+22:39:09 ▶ src/pages/admin.astro
+22:39:09   └─ /admin/index.html
+[2026-08-16 22:39:10] $ astro build
+
+Auto-generating collections for folders in "src/content/" that are not defined as collections.
+This is deprecated, so you should define these collections yourself in "src/content.config.ts".
+The following collections have been auto-generated: posts
+
+Cannot read properties of undefined (reading 'price')
+  Stack trace:
+    at Object.default (file:///home/tacavar/workspaces/theeroticmorgan-rebuild/site/dist/pages/admin.astro.mjs?time=1786919949959:15:1855)
+    at createAstroComponentInstance (file:///home/tacavar/workspaces/theeroticmorgan-rebuild/site/dist/chunks/astro/server_KAhnKNPu.mjs:1600:20)
+    at renderComponent (file:///home/tacavar/workspaces/theeroticmorgan-rebuild/site/dist/chunks/astro/server_KAhnKNPu.mjs:1979:12)
+    at admin (file:///home/tacavar/workspaces/theeroticmorgan-rebuild/site/dist/chunks/astro/server_KAhnKNPu.mjs:236:12)
+    at renderToString (file:///home/tacavar/workspaces/theeroticmorgan-rebuild/site/node_modules/astro/dist/runtime/server/render/astro/render.js:14:32)
+error: script "build" exited with code 1
+
+[2026-08-16 22:39:49] Starting publish pipeline...
+[2026-08-16 22:39:49] Fetching data from https://tem.tacavar.com/api/admin?action=export
+[2026-08-16 22:39:49] New publish pending detected (timestamp: 1786919944375)
+[2026-08-16 22:39:49] Processing images...
+[2026-08-16 22:39:49] Writing updated data files...
+[2026-08-16 22:39:49] Data files updated
+[2026-08-16 22:39:49] Building site with bun...
+[2026-08-16 22:39:52] ERROR: Build failed
+[2026-08-16 22:39:52] 22:39:50 [content] Syncing content
+22:39:50 [WARN] [glob-loader] No files found matching "**/*.md,!**/_*/**/*.md,!**/_*.md" in directory "src/content/posts"
+22:39:50 [content] Synced content
+22:39:50 [types] Generated 53ms
+22:39:50 [build] output: "static"
+22:39:50 [build] mode: "static"
+22:39:50 [build] directory: /home/tacavar/workspaces/theeroticmorgan-rebuild/site/dist/
+22:39:50 [build] Collecting build info...
+22:39:50 [build] ✓ Completed in 86ms.
+22:39:50 [build] Building static entrypoints...
+22:39:52 [vite] ✓ built in 1.37s
+22:39:52 [build] ✓ Completed in 1.41s.
+
+ building client (vite) 
+22:39:52 [vite] transforming...
+22:39:52 [vite] ✓ 5 modules transformed.
+22:39:52 [vite] rendering chunks...
+22:39:52 [vite] computing gzip size...
+22:39:52 [vite] dist/_astro/login.astro_astro_type_script_index_0_lang.C5s5arRo.js                 0.08 kB │ gzip: 0.10 kB
+22:39:52 [vite] dist/_astro/register.astro_astro_type_script_index_0_lang.C5s5arRo.js              0.08 kB │ gzip: 0.10 kB
+22:39:52 [vite] dist/_astro/appointment-request.astro_astro_type_script_index_0_lang.7lZMBWu7.js   0.73 kB │ gzip: 0.46 kB
+22:39:52 [vite] dist/_astro/admin.astro_astro_type_script_index_0_lang.BZuXchRP.js                10.48 kB │ gzip: 2.69 kB
+22:39:52 [vite] ✓ built in 57ms
+
+ generating static routes 
+22:39:52 ▶ src/pages/2257.astro
+22:39:52   └─ /2257/index.html (+13ms) 
+22:39:52 ▶ src/pages/404.astro
+22:39:52   └─ /404.html (+2ms) 
+22:39:52 ▶ src/pages/about-me.astro
+22:39:52   └─ /about-me/index.html (+7ms) 
+22:39:52 ▶ src/pages/admin.astro
+22:39:52   └─ /admin/index.html
+[2026-08-16 22:39:52] $ astro build
+
+Auto-generating collections for folders in "src/content/" that are not defined as collections.
+This is deprecated, so you should define these collections yourself in "src/content.config.ts".
+The following collections have been auto-generated: posts
+
+Cannot read properties of undefined (reading 'price')
+  Stack trace:
+    at Object.default (file:///home/tacavar/workspaces/theeroticmorgan-rebuild/site/dist/pages/admin.astro.mjs?time=1786919992181:15:1855)
+    at createAstroComponentInstance (file:///home/tacavar/workspaces/theeroticmorgan-rebuild/site/dist/chunks/astro/server_KAhnKNPu.mjs:1600:20)
+    at renderComponent (file:///home/tacavar/workspaces/theeroticmorgan-rebuild/site/dist/chunks/astro/server_KAhnKNPu.mjs:1979:12)
+    at admin (file:///home/tacavar/workspaces/theeroticmorgan-rebuild/site/dist/chunks/astro/server_KAhnKNPu.mjs:236:12)
+    at renderToString (file:///home/tacavar/workspaces/theeroticmorgan-rebuild/site/node_modules/astro/dist/runtime/server/render/astro/render.js:14:32)
+error: script "build" exited with code 1
+
+[2026-08-16 22:40:02] Starting publish pipeline...
+[2026-08-16 22:40:02] Fetching data from https://tem.tacavar.com/api/admin?action=export
+[2026-08-16 22:40:02] New publish pending detected (timestamp: 1786919944375)
+[2026-08-16 22:40:02] Processing images...
+[2026-08-16 22:40:02] Writing updated data files...
+[2026-08-16 22:40:02] Data files updated
+[2026-08-16 22:40:02] Building site with bun...
+[2026-08-16 22:40:05] Starting publish pipeline...
+[2026-08-16 22:40:05] Fetching data from https://tem.tacavar.com/api/admin?action=export
+[2026-08-16 22:40:05] No new publishes pending (last: 1786919944375, current: 1786919944375). Skipping.
+[2026-08-16 22:40:10] ERROR: Build failed
+[2026-08-16 22:40:10] 22:40:07 [content] Syncing content
+22:40:07 [WARN] [glob-loader] No files found matching "**/*.md,!**/_*/**/*.md,!**/_*.md" in directory "src/content/posts"
+22:40:07 [content] Synced content
+22:40:07 [types] Generated 93ms
+22:40:07 [build] output: "static"
+22:40:07 [build] mode: "static"
+22:40:07 [build] directory: /home/tacavar/workspaces/theeroticmorgan-rebuild/site/dist/
+22:40:07 [build] Collecting build info...
+22:40:07 [build] ✓ Completed in 170ms.
+22:40:07 [build] Building static entrypoints...
+22:40:09 [vite] ✓ built in 2.55s
+22:40:09 [build] ✓ Completed in 2.62s.
+
+ building client (vite) 
+22:40:09 [vite] transforming...
+22:40:09 [vite] ✓ 5 modules transformed.
+22:40:09 [vite] rendering chunks...
+22:40:09 [vite] computing gzip size...
+22:40:09 [vite] dist/_astro/login.astro_astro_type_script_index_0_lang.C5s5arRo.js                 0.08 kB │ gzip: 0.10 kB
+22:40:09 [vite] dist/_astro/register.astro_astro_type_script_index_0_lang.C5s5arRo.js              0.08 kB │ gzip: 0.10 kB
+22:40:09 [vite] dist/_astro/appointment-request.astro_astro_type_script_index_0_lang.7lZMBWu7.js   0.73 kB │ gzip: 0.46 kB
+22:40:09 [vite] dist/_astro/admin.astro_astro_type_script_index_0_lang.BwRlE4ab.js                20.87 kB │ gzip: 4.37 kB
+22:40:09 [vite] ✓ built in 122ms
+
+ generating static routes 
+22:40:09 ▶ src/pages/2257.astro
+22:40:09   └─ /2257/index.html (+11ms) 
+22:40:09 ▶ src/pages/404.astro
+22:40:09   └─ /404.html (+6ms) 
+22:40:09 ▶ src/pages/about-me.astro
+22:40:09   └─ /about-me/index.html (+10ms) 
+22:40:09 ▶ src/pages/admin.astro
+22:40:09   └─ /admin/index.html
+[2026-08-16 22:40:10] $ astro build
+
+Auto-generating collections for folders in "src/content/" that are not defined as collections.
+This is deprecated, so you should define these collections yourself in "src/content.config.ts".
+The following collections have been auto-generated: posts
+
+Cannot read properties of undefined (reading 'price')
+  Stack trace:
+    at Object.default (file:///home/tacavar/workspaces/theeroticmorgan-rebuild/site/dist/pages/admin.astro.mjs?time=1786920009919:15:1855)
+    at createAstroComponentInstance (file:///home/tacavar/workspaces/theeroticmorgan-rebuild/site/dist/chunks/astro/server_KAhnKNPu.mjs:1600:20)
+    at renderComponent (file:///home/tacavar/workspaces/theeroticmorgan-rebuild/site/dist/chunks/astro/server_KAhnKNPu.mjs:1979:12)
+    at admin (file:///home/tacavar/workspaces/theeroticmorgan-rebuild/site/dist/chunks/astro/server_KAhnKNPu.mjs:236:12)
+    at renderToString (file:///home/tacavar/workspaces/theeroticmorgan-rebuild/site/node_modules/astro/dist/runtime/server/render/astro/render.js:14:32)
+error: script "build" exited with code 1
+
+[2026-08-16 22:42:01] Starting publish pipeline...
+[2026-08-16 22:42:01] Fetching data from https://tem.tacavar.com/api/admin?action=export
+[2026-08-16 22:42:01] ERROR: Failed to fetch from API: HTTP Error 500: Internal Server Error
