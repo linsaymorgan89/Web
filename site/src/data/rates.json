@@ -1,0 +1,25 @@
+{
+  "wishlistUrl": "https://mywishlist.online/w/rsv35c/morgs-wishlist",
+  "wishlistLabel": "Morg’s Wishlist",
+  "local": [
+    ["One Hour", "400"],
+    ["Two Hours (Recommended)", "700"],
+    ["Three Hours (Dinner Date)", "1000"],
+    ["Overnight (10-12 hours)", "1500"],
+    ["Weekend Trip", "2500"]
+  ],
+  "touring": [
+    ["One Hour", "500"],
+    ["Two Hours (Recommended)", "900"],
+    ["Three Hours (Dinner Date)", "1200"],
+    ["Overnight (10-12 hours)", "2000"],
+    ["Weekend Trip", "4000"]
+  ],
+  "addons": [
+    ["Role Play", "150"],
+    ["PSE (call for details)", "200/hr"],
+    ["Massage (can be booked alone)", "250/hr"],
+    ["BDSM", "150"],
+    ["Dancing (Parties or Private)", "150"]
+  ]
+}

@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { posts, categories } from '../../data/posts';
+import { posts, categories } from '../../data/content';
 
 export function getStaticPaths() {
   return posts.map((p) => ({ params: { slug: p.slug }, props: { post: p } }));

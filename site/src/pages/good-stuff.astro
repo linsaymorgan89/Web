@@ -1,21 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
+import { site } from '../data/content';
 
 const meta = {
   title: 'The Good Stuff | Lifetime Access to Morgan\u2019s Private Content',
   description: 'Unlock my private content for a one-time $50. Enjoy lifetime intimate photos, monthly updates, and a free custom video. Pay via Zelle, PayPal, or CashApp.',
 };
-const perks = [
-  'My sexiest nude photos (updated monthly)',
-  'Solo videos',
-  'BG videos',
-  'Custom videos and pics (one free 1-minute custom video, all after $25)',
-];
-const faq = [
-  ['How much is access to The Good Stuff?', 'One single payment of $50 for lifetime access. No recurring charges, ever.'],
-  ['Why can\u2019t I pay with a card?', 'Because of the adult nature of the content, Stripe doesn\u2019t allow credit card payments, so payments are made directly via Zelle, Venmo, CashApp, PayPal, or Apple Pay.'],
-  ['What do I get with my membership?', 'Unlimited lifetime access to my sexiest nude photos (updated at least monthly), solo videos, BG videos taken with consenting clients, and one free custom video.'],
-];
+const perks = site.goodwillPerks;
+const faq = site.goodwillFaq;
+const gprice = site.goodwill.price;
 ---
 <Base title={meta.title} description={meta.description}>
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -35,7 +28,7 @@ const faq = [
         No re-occurring fees, just all the Morgan you can enjoy in private.
       </p>
 
-      <h2 style="font-size:2.6rem;">$50 <span style="font-size:1rem; font-family:var(--font-body); letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-soft);">one time, forever</span></h2>
+      <h2 style="font-size:2.6rem;">${gprice} <span style="font-size:1rem; font-family:var(--font-body); letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-soft);">{site.goodwill.tagline}</span></h2>
 
       <ul class="price-list" style="margin: 2rem 0;">
         {perks.map((p) => <li><span>{p}</span></li>)}

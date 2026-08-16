@@ -176,12 +176,12 @@ main { min-height: 60vh; }
   .hero-media img { min-height: 0; max-height: 68vh; }
 }
 
-/* generic two-column split for inner pages */
+/* generic two-column split for inner pages: text top-aligned beside media so the layout reads top-to-bottom */
 .split {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(2rem, 5vw, 4.5rem);
-  align-items: center;
+  align-items: start;
 }
 @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
 
@@ -200,7 +200,17 @@ h3 { font-size: 1.25rem; }
 
 /* ---------- images ---------- */
 figure img, .photo-grid img { display: block; width: 100%; height: auto; }
-.portrait { aspect-ratio: 3 / 4; object-fit: cover; }
+/* portrait: natural ratio so the subject's head is never cropped; fixed max height on mobile so it reads as a companion image, not a full-screen zoom */
+.portrait {
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: cover;
+  object-position: center top;
+}
+@media (max-width: 760px) {
+  .portrait { max-height: 74vh; }
+}
 .photo-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));

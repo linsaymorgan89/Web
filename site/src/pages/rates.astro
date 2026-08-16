@@ -1,32 +1,15 @@
 ---
 import Base from '../layouts/Base.astro';
+import { rates } from '../data/content';
 
 const meta = {
   title: 'Rates & Suggested Donations | Morgan Alexander, Dallas Escort',
   description: 'Check my suggested donations: local Dallas rates from $400/hr, touring rates, overnights, weekend trips, and add-ons. Wishlist link included.',
 };
 
-const local = [
-  ['One Hour', '400'],
-  ['Two Hours (Recommended)', '700'],
-  ['Three Hours (Dinner Date)', '1000'],
-  ['Overnight (10-12 hours)', '1500'],
-  ['Weekend Trip', '2500'],
-];
-const touring = [
-  ['One Hour', '500'],
-  ['Two Hours (Recommended)', '900'],
-  ['Three Hours (Dinner Date)', '1200'],
-  ['Overnight (10-12 hours)', '2000'],
-  ['Weekend Trip', '4000'],
-];
-const addons = [
-  ['Role Play', '150'],
-  ['PSE (call for details)', '200/hr'],
-  ['Massage (can be booked alone)', '250/hr'],
-  ['BDSM', '150'],
-  ['Dancing (Parties or Private)', '150'],
-];
+const local = rates.local;
+const touring = rates.touring;
+const addons = rates.addons;
 ---
 <Base title={meta.title} description={meta.description}>
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -44,7 +27,7 @@ const addons = [
       <h1>Suggested Donations</h1>
       <p class="lede" style="margin: 1rem 0 2.5rem;">
         If you really want to make our time together special, check out my wishlist for gift ideas:
-        <a href="https://mywishlist.online/w/rsv35c/morgs-wishlist" rel="noopener">Morg&rsquo;s Wishlist</a>.
+        <a href={rates.wishlistUrl} rel="noopener">{rates.wishlistLabel}</a>.
       </p>
 
       <h2 id="local">Local Rates</h2>

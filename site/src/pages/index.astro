@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { Image } from 'astro:assets';
+import { site, posts, categories } from '../data/content';
 import heroImg from '../assets/images/morgan-hero.jpg';
 import aboutImg from '../assets/images/morgan-about.jpg';
 
@@ -8,11 +9,8 @@ const meta = {
   title: 'Morgan Alexander | Independent Escort in Dallas, TX',
   description: 'Welcome to my world of class and style. I am Morgan Alexander, a warm Dallas private companion for dinner dates and private time. Call 945-397-2900.',
 };
-const posts = [
-  { slug: 'get-the-goods', title: 'What is "The good stuff"?', date: '2026-08-01', img: '/images/blog/good-stuff.jpg', alt: 'Elegant portrait teasing the members-only gallery.' },
-  { slug: 'touring-colorado-sept-7-12', title: 'Touring Colorado Sept 7-12', date: '2026-07-29', img: '/images/blog/garden-of-the-gods.jpg', alt: 'Garden of the Gods rock formations under a Colorado sky.' },
-  { slug: 'how-to-contact-your-escort', title: 'How To Contact Your Escort', date: '2026-07-26', img: '/images/blog/contact.jpg', alt: 'A phone on a nightstand, ready for a first text.' },
-];
+const featuredPosts = posts.slice(0, 3).map((p) => ({ slug: p.slug, title: p.title, date: p.date, img: p.img, alt: p.imgAlt ?? '' }));
+const phone = '+1' + site.phone.replace(/\D/g, '');
 ---
 <Base title={meta.title} description={meta.description}>
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -41,22 +39,21 @@ const posts = [
   <section class="section" style="padding-bottom:0;">
     <div class="hero">
       <div class="hero-copy">
-        <p class="eyebrow">Dallas, Texas &middot; Independent</p>
+        <p class="eyebrow">{site.home.eyebrow}</p>
         <h1>Morgan<br />Alexander</h1>
         <p class="lede" style="margin: 1.5rem 0 2.25rem; max-width: 34ch;">
-          Class, style, laughter, and a night you will not forget. Dinner dates,
-          nights on the town, and our most memorable time together, in private.
+          {site.home.lede}
         </p>
         <div style="display:flex; gap:0.9rem; flex-wrap:wrap;">
           <a class="btn" href="/appointment-request/">Book an appointment</a>
-          <a class="btn btn-pink" href="tel:+19453972900">Call or text</a>
+          <a class="btn btn-pink" href={`tel:${phone}`}>Call or text</a>
         </div>
         <p style="margin-top:2.25rem; font-size:0.82rem; color:var(--ink-soft); letter-spacing:0.02em;">
           Reviewed on ECCIE &middot; Verified on P411, Slixa &amp; Tryst
         </p>
       </div>
       <div class="hero-media">
-        <Image src={heroImg} alt="Sophisticated woman in evening attire, soft studio lighting." widths={[480, 768, 1080, 1400]} sizes="(max-width: 760px) 100vw, 58vw" loading="eager" fetchpriority="high" />
+        <Image src={heroImg} alt="Sophisticated woman in a silver sequin dress, reclining on a white sofa." widths={[480, 768, 1080, 1400]} sizes="(max-width: 760px) 100vw, 58vw" loading="eager" fetchpriority="high" />
       </div>
     </div>
   </section>
@@ -74,7 +71,7 @@ const posts = [
     <div class="wrap">
       <h2>My Latest Blog Posts</h2>
       <div class="photo-grid" style="margin-top:2rem; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));">
-        {posts.map((p) => (
+        {featuredPosts.map((p) => (
           <a href={`/blog/${p.slug}/`} style="text-decoration:none; color:inherit;">
             <img src={p.img} alt={p.alt} width="598" height="890" style="aspect-ratio:3/4; object-fit:cover;" loading="lazy" />
             <p style="font-family: var(--font-display); font-size:1.2rem; margin-top:0.8rem;">{p.title}</p>

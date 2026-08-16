@@ -1,14 +1,11 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { posts, categories } from '../../data/posts';
+import { posts, categories } from '../../data/content';
 
 const meta = {
   title: 'Blog | The Erotic Morgan',
   description: 'Weekly blog by Morgan Alexander: touring announcements, client etiquette guides, behind-the-scenes.',
 };
-
-
-
 
 const sorted = [...posts].sort((a, b) => b.date.localeCompare(a.date));
 

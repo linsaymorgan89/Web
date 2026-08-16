@@ -1,15 +1,14 @@
 ---
 import Base from '../layouts/Base.astro';
+import { site } from '../data/content';
 
 const meta = {
   title: 'Contact Morgan Alexander | Dallas Escort, 945-397-2900',
   description: 'Reach Morgan Alexander by phone or text at 945-397-2900, email morgan@theeroticmorgan.com, or find me on OnlyFans. Pre-booking recommended.',
 };
-const faq = [
-  ['How do I contact Morgan?', 'Text or call 945-397-2900 for the fastest response. For longer appointments, use the appointment request form 2-3 days in advance. Email morgan@theeroticmorgan.com works too.'],
-  ['What should my first text say?', 'Include your name, where you saw my ad, whether you want incall or outcall, and the date and time you have in mind. That single message gets the fastest yes.'],
-  ['Do you require screening or deposits?', 'No references or deposits required for standard appointments (over nights and weekend trips excepted). P411 or OH2 membership helps but is not necessary.'],
-];
+const faq = site.contactFaq;
+const phone = '+1' + site.phone.replace(/\D/g, '');
+const phoneDisplay = '(' + site.phone.replace(/\D/g, '').replace(/^(\d{3})(\d{3})(\d{4})$/, '$1) $2-$3');
 ---
 <Base title={meta.title} description={meta.description}>
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -33,11 +32,11 @@ const faq = [
       <p class="lede" style="margin: 1rem 0 2rem;">I am easy to get a hold of and schedule with.</p>
 
       <ul class="price-list">
-        <li><span>Phone (fastest)</span><a href="tel:+19453972900">(945) 397-2900</a></li>
-        <li><span>Email</span><a href="mailto:morgan@theeroticmorgan.com">morgan@theeroticmorgan.com</a></li>
-        <li><span>OnlyFans</span><a href="https://onlyfans.com/theeroticmorgan" rel="noopener">onlyfans.com/theeroticmorgan</a></li>
-        <li><span>Pre-booking</span><a href="/appointment-request/">Appointment request form</a></li>
-      </ul>
+              <li><span>Phone (fastest)</span><a href={`tel:${phone}`}>{phoneDisplay}</a></li>
+              <li><span>Email</span><a href={`mailto:${site.email}`}>{site.email}</a></li>
+              <li><span>OnlyFans</span><a href={`https://${site.onlyfans}`} rel="noopener">{site.onlyfans}</a></li>
+              <li><span>Pre-booking</span><a href="/appointment-request/">Appointment request form</a></li>
+            </ul>
 
       <div style="border-top:1px solid var(--grey-line); margin-top:3rem; padding-top:2rem;">
         <h2>Questions</h2>

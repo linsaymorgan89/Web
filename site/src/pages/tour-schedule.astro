@@ -1,18 +1,12 @@
 ---
 import Base from '../layouts/Base.astro';
+import { tours, rates } from '../data/content';
 
 const meta = {
   title: 'Tour Schedule | Morgan Alexander, Dallas Escort',
   description: 'Check my upcoming tour schedule for dates, cities, and touring rates. Enjoy a pre-booking discount when you plan our special time together today.',
 };
-const tours = [
-  {
-    city: 'Colorado',
-    dates: 'September 7-12, 2026',
-    blurb: 'Denver first, then wherever the adventure takes me. Outcall anywhere in the state; 2-hour minimum beyond 40 miles. $40 pre-book discount.',
-    status: 'upcoming',
-  },
-];
+const touringRates = rates.touring;
 ---
 <Base title={meta.title} description={meta.description}>
   <section class="section">
@@ -34,11 +28,7 @@ const tours = [
       <div class="prose" style="margin-top:2.5rem;">
         <h2>Touring Rates</h2>
         <ul class="price-list">
-          <li><span>One Hour</span><span class="price">$500</span></li>
-          <li><span>Two Hours (Recommended)</span><span class="price">$900</span></li>
-          <li><span>Three Hours (Dinner Date)</span><span class="price">$1,200</span></li>
-          <li><span>Overnight (10-12 hours)</span><span class="price">$2,000</span></li>
-          <li><span>Weekend Trip</span><span class="price">$4,000</span></li>
+          {touringRates.map(([name, price]) => <li><span>{name}</span><span class="price">${price}</span></li>)}
         </ul>
         <p style="margin-top:1.5rem;"><a href="/rates/">Full rates and add-ons</a></p>
       </div>
