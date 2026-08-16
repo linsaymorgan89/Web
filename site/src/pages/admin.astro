@@ -27,6 +27,7 @@ const meta = {
         <button class="admin-tab" data-tab="rates">Rates</button>
         <button class="admin-tab" data-tab="tours">Tours</button>
         <button class="admin-tab" data-tab="posts">Posts</button>
+        <button class="admin-tab" data-tab="gallery">Gallery</button>
       </div>
 
       <!-- Tab Content -->
@@ -93,6 +94,13 @@ const meta = {
           <h2>Blog Posts</h2>
           <p style="color: var(--ink-soft); margin-bottom: 1.5rem;">Add, edit, or delete blog posts.</p>
           <div id="posts-loading">Loading...</div>
+        </div>
+
+        <!-- Gallery Tab -->
+        <div id="tab-gallery" class="tab-pane" style="display: none;">
+          <h2>Photo Gallery</h2>
+          <p style="color: var(--ink-soft); margin-bottom: 1.5rem;">Upload new photos or delete existing ones from the public gallery page.</p>
+          <div id="gallery-loading">Loading...</div>
         </div>
       </div>
 

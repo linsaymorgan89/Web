@@ -4,6 +4,7 @@ import siteRaw from './site.json';
 import ratesRaw from './rates.json';
 import toursRaw from './tours.json';
 import postsRaw from './posts.json';
+import galleryRaw from './gallery.json';
 
 export type Post = {
   slug: string;
@@ -42,8 +43,14 @@ export type Tour = {
   status: 'upcoming' | 'past';
 };
 
+export type GalleryPhoto = {
+  img: string;
+  alt: string;
+};
+
 export const site = siteRaw as unknown as SiteContent;
 export const rates = ratesRaw as unknown as RatesContent;
 export const tours = toursRaw as unknown as Tour[];
 export const posts = (postsRaw as unknown as { posts: Post[]; categories: Record<string, string> }).posts;
 export const categories = (postsRaw as unknown as { posts: Post[]; categories: Record<string, string> }).categories;
+export const gallery = galleryRaw as unknown as GalleryPhoto[];

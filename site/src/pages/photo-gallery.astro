@@ -1,25 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
+import { gallery } from '../data/content';
 
 const meta = {
   title: 'Photo Gallery | Morgan Alexander\u2019s Sexy Photo Collection',
   description: 'Browse my favorite self-shot photos. Real, unretouched, and all me. Plus a portal to The Good Stuff for my very hottest pictures.',
 };
-// Gallery images staged from the archive (public-safe set from the old /photo-gallery/)
-const gallery = [
-  ['morgan-01', 'Elegant portrait of a beautiful woman with a warm smile.'],
-  ['morgan-02', 'Elegant gallery portrait of a woman in stylish evening attire.'],
-  ['morgan-03', 'Elegant studio portrait of a woman in soft lighting.'],
-  ['morgan-04', 'Sophisticated gallery portrait of a woman in elegant pose.'],
-  ['morgan-05', 'Elegant woman posing in a tasteful gallery portrait.'],
-  ['morgan-06', 'Portrait of Morgan in her favorite lingerie set.'],
-  ['morgan-07', 'Casual at-home portrait, natural light.'],
-  ['morgan-08', 'Evening wear portrait with soft pink tones.'],
-  ['morgan-09', 'Relaxed bedroom portrait.'],
-  ['morgan-10', 'Full-length portrait in heels.'],
-  ['morgan-11', 'Mirror selfie portrait.'],
-  ['morgan-12', 'Close-up portrait, soft focus.'],
-];
 ---
 <Base title={meta.title} description={meta.description}>
   <script type="application/ld+json" set:html={JSON.stringify({
@@ -38,8 +24,8 @@ const gallery = [
       </div>
 
       <div class="photo-grid">
-        {gallery.map(([name, alt]) => (
-          <img src={`/images/gallery/${name}.jpg`} alt={alt} width="576" height="1024"
+        {gallery.map((photo) => (
+          <img src={photo.img} alt={photo.alt} width="576" height="1024"
                style="aspect-ratio: 9/16; object-fit:cover;" loading="lazy" />
         ))}
       </div>

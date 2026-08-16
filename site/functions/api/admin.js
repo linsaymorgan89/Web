@@ -16,6 +16,7 @@ import siteSeed from '../../src/data/site.json';
 import ratesSeed from '../../src/data/rates.json';
 import toursSeed from '../../src/data/tours.json';
 import postsSeed from '../../src/data/posts.json';
+import gallerySeed from '../../src/data/gallery.json';
 
 export async function onRequest(context) {
   const { request, env } = context;
@@ -71,7 +72,11 @@ async function handleExport(env) {
     // posts
     value = await env.TEM_USERS.get('admin:posts');
     result.posts = value ? JSON.parse(value) : postsSeed;
-    
+
+    // gallery
+    value = await env.TEM_USERS.get('admin:gallery');
+    result.gallery = value ? JSON.parse(value) : gallerySeed;
+
     // Include publish timestamp if set
     const pending = await env.TEM_USERS.get('admin:publish_pending');
     result.publishPending = pending ? parseInt(pending, 10) : 0;
@@ -83,7 +88,7 @@ async function handleExport(env) {
 
 async function handleGet(env, model) {
   // Load from KV, or fall back to seed data if not yet published
-  const available = ['site', 'rates', 'tours', 'posts'];
+  const available = ['site', 'rates', 'tours', 'posts', 'gallery'];
   if (model && !available.includes(model)) {
     return Response.json({ error: 'Invalid model' }, { status: 400 });
   }
@@ -104,6 +109,8 @@ async function handleGet(env, model) {
           return Response.json(toursSeed);
         } else if (model === 'posts') {
           return Response.json(postsSeed);
+        } else if (model === 'gallery') {
+          return Response.json(gallerySeed);
         }
       }
     } else {
@@ -134,6 +141,9 @@ async function handleSave(env, data) {
     }
     if (data.posts) {
       await env.TEM_USERS.put('admin:posts', JSON.stringify(data.posts));
+    }
+    if (data.gallery) {
+      await env.TEM_USERS.put('admin:gallery', JSON.stringify(data.gallery));
     }
     return Response.json({ success: true });
   } catch (e) {

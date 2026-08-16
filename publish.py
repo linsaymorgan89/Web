@@ -9,6 +9,7 @@ import os
 import json
 import subprocess
 import base64
+import hashlib
 import re
 from pathlib import Path
 from datetime import datetime
@@ -122,7 +123,7 @@ def process_image(img_value, target_dir, filename_hint):
     return f"/images/{target_dir.name}/{safe_filename}.{ext}"
 
 
-def sanity_check(site, rates, tours, posts_obj):
+def sanity_check(site, rates, tours, posts_obj, gallery):
     """
     Refuse to publish if the fetched content looks corrupt/empty compared to
     what's already committed on disk. A previous incident: a stray empty
@@ -156,6 +157,13 @@ def sanity_check(site, rates, tours, posts_obj):
     if existing_posts and not new_posts:
         problems.append(f"posts went from {len(existing_posts)} to 0")
 
+    try:
+        existing_gallery = json.loads((DATA_DIR / "gallery.json").read_text())
+    except Exception:
+        existing_gallery = []
+    if existing_gallery and not gallery:
+        problems.append(f"gallery went from {len(existing_gallery)} to 0")
+
     return problems
 
 
@@ -169,6 +177,24 @@ def process_tours(tours):
                 tour["img"], PUBLIC_IMAGES / "tours", city
             )
         processed.append(tour)
+    return processed
+
+
+def process_gallery(gallery):
+    """
+    Process gallery photo list. New uploads (data URIs) get a content-hash
+    filename since gallery photos have no natural unique name like a post
+    slug or tour city -- hashing avoids collisions and re-writing the same
+    photo under a new name on every publish run.
+    """
+    processed = []
+    for i, photo in enumerate(gallery):
+        img = photo.get("img", "")
+        if img.startswith("data:image/"):
+            match = re.match(r'data:image/[^;]+;base64,(.+)', img)
+            digest = hashlib.sha1(match.group(1).encode()).hexdigest()[:10] if match else str(i)
+            photo["img"] = process_image(img, PUBLIC_IMAGES / "gallery", "photo-" + digest)
+        processed.append(photo)
     return processed
 
 
@@ -239,6 +265,7 @@ def commit_changes():
             "site/src/data/rates.json",
             "site/src/data/tours.json",
             "site/src/data/posts.json",
+            "site/src/data/gallery.json",
             "site/public/images",
             ".last_published",
         ],
@@ -326,6 +353,7 @@ def main():
     rates = data.get("rates", {})
     tours = data.get("tours", [])
     posts_obj = data.get("posts", {"categories": {}, "posts": []})
+    gallery = data.get("gallery", [])
     publish_pending = data.get("publishPending", 0)
 
     # Check if anything new to publish
@@ -337,7 +365,7 @@ def main():
     log(f"New publish pending detected (timestamp: {publish_pending})")
 
     # Refuse to overwrite good data with an empty/corrupt payload
-    problems = sanity_check(site, rates, tours, posts_obj)
+    problems = sanity_check(site, rates, tours, posts_obj, gallery)
     if problems:
         log("ERROR: Sanity check failed, refusing to publish: " + "; ".join(problems))
         log("(Not updating marker file, so this will be retried once the underlying data is fixed.)")
@@ -347,6 +375,7 @@ def main():
     log("Processing images...")
     tours = process_tours(tours)
     posts_obj = process_posts(posts_obj)
+    gallery = process_gallery(gallery)
 
     # Write data files
     log("Writing updated data files...")
@@ -363,6 +392,9 @@ def main():
     )
     (DATA_DIR / "posts.json").write_text(
         json.dumps(posts_obj, indent=2) + "\n"
+    )
+    (DATA_DIR / "gallery.json").write_text(
+        json.dumps(gallery, indent=2) + "\n"
     )
     log("Data files updated")
 

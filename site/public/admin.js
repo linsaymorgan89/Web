@@ -4,6 +4,7 @@
     let loadedRates = null;
     let loadedTours = null;
     let loadedPosts = null;
+    let loadedGallery = null;
 
     // Every stored value (titles, blurbs, etc.) gets interpolated into
     // innerHTML strings below. Without escaping, a literal " in content
@@ -34,6 +35,7 @@
           if (tabId === 'rates' && document.getElementById('rates-loading')) loadRates();
           if (tabId === 'tours' && document.getElementById('tours-loading')) loadTours();
           if (tabId === 'posts' && document.getElementById('posts-loading')) loadPosts();
+          if (tabId === 'gallery' && document.getElementById('gallery-loading')) loadGallery();
         }
       });
     });
@@ -92,6 +94,23 @@
       }
     }
 
+    async function loadGallery() {
+      const container = document.getElementById('gallery-loading');
+      if (!container || container.dataset.loaded) return;
+      container.innerHTML = '<p>Loading gallery...</p>';
+      try {
+        const res = await fetch('/api/admin?model=gallery');
+        if (!res.ok) throw new Error('Failed to load');
+        const data = await res.json();
+        loadedGallery = data;
+        container.innerHTML = '';
+        container.dataset.loaded = 'true';
+        renderGalleryList(container, data);
+      } catch (err) {
+        container.innerHTML = '<p style="color:var(--error);">Failed to load gallery: ' + err.message + '</p>';
+      }
+    }
+
     function renderRatesTable(container, items, kind, title) {
       const section = document.createElement('div');
       section.style.marginBottom = '2rem;';
@@ -136,6 +155,62 @@
       table.querySelectorAll('.btn-remove').forEach(btn => {
         btn.addEventListener('click', () => btn.parentElement.remove());
       });
+    }
+
+    function renderGalleryList(container, items) {
+      const grid = document.createElement('div');
+      grid.style.display = 'grid';
+      grid.style.gridTemplateColumns = 'repeat(auto-fill, minmax(140px, 1fr))';
+      grid.style.gap = '1rem';
+      grid.setAttribute('data-gallery-container', 'true');
+
+      function addPhotoCard(photo) {
+        const card = document.createElement('div');
+        card.className = 'gallery-card';
+        card.style.position = 'relative';
+        card.style.border = '1px solid var(--grey-line)';
+        card.style.borderRadius = '4px';
+        card.style.overflow = 'hidden';
+        card.innerHTML =
+          '<img class="gallery-thumb" src="' + escapeHtml(photo.img || '') + '" alt="" style="width:100%; aspect-ratio:9/16; object-fit:cover; display:block; ' + (photo.img ? '' : 'background:#eee;') + '" />' +
+          '<button type="button" class="gallery-remove" title="Delete photo" style="position:absolute; top:0.35rem; right:0.35rem; width:1.75rem; height:1.75rem; border-radius:50%; border:none; background:rgba(0,0,0,0.65); color:#fff; cursor:pointer; font-size:1rem; line-height:1;">&times;</button>' +
+          '<input type="text" class="gallery-alt-input" value="' + escapeHtml(photo.alt || '') + '" placeholder="Alt text" style="width:100%; box-sizing:border-box; border:none; border-top:1px solid var(--grey-line); padding:0.35rem; font-size:0.75rem;" />' +
+          '<input type="hidden" class="gallery-img-input" value="' + escapeHtml(photo.img || '') + '" />';
+        card.querySelector('.gallery-remove').addEventListener('click', () => card.remove());
+        grid.appendChild(card);
+        return card;
+      }
+
+      items.forEach((photo) => addPhotoCard(photo));
+      container.appendChild(grid);
+
+      // Upload: pick one or more photos, each becomes a new card (data URL
+      // now, converted to a real /images/gallery/*.jpg file by the publish
+      // pipeline).
+      const uploadWrap = document.createElement('div');
+      uploadWrap.style.marginTop = '1.25rem';
+      uploadWrap.innerHTML =
+        '<label style="display:block; font-size:0.85rem; color:var(--ink-soft); margin-bottom:0.4rem;">Add photo(s)</label>' +
+        '<input type="file" accept="image/*" multiple class="gallery-upload-input" />';
+      const uploadInput = uploadWrap.querySelector('.gallery-upload-input');
+      uploadInput.addEventListener('change', (e) => {
+        const files = [...(e.target.files || [])];
+        files.forEach((file) => {
+          const card = addPhotoCard({ img: '', alt: '' });
+          const reader = new FileReader();
+          reader.onload = (evt) => {
+            const dataUrl = evt.target?.result;
+            if (typeof dataUrl === 'string') {
+              card.querySelector('.gallery-img-input').value = dataUrl;
+              card.querySelector('.gallery-thumb').src = dataUrl;
+              card.querySelector('.gallery-thumb').style.background = '';
+            }
+          };
+          reader.readAsDataURL(file);
+        });
+        uploadInput.value = '';
+      });
+      container.appendChild(uploadWrap);
     }
 
     function renderToursList(container, items) {
@@ -561,7 +636,7 @@
           }, 2000);
         });
 
-        list.insertBefore(newCard, addBtn);
+        list.appendChild(newCard);
       });
       
       container.appendChild(list);
@@ -723,6 +798,22 @@
       };
     }
 
+    // Gallery tab -> array of { img, alt }, in the order the cards appear
+    // (i.e. respects photos deleted or newly added in this session).
+    function serializeGallery() {
+      const container = document.getElementById('gallery-loading');
+      if (!container || !container.dataset.loaded) return null;
+      const photos = [];
+      container.querySelectorAll('[data-gallery-container] > .gallery-card').forEach((card) => {
+        const imgInput = card.querySelector('.gallery-img-input');
+        const altInput = card.querySelector('.gallery-alt-input');
+        const img = imgInput ? imgInput.value.trim() : '';
+        const alt = altInput ? altInput.value.trim() : '';
+        if (img) photos.push({ img, alt });
+      });
+      return photos;
+    }
+
     function buildPayload() {
       const data = {};
       const site = serializeSite();
@@ -733,6 +824,8 @@
       if (tours) data.tours = tours;
       const posts = serializePosts();
       if (posts) data.posts = posts;
+      const gallery = serializeGallery();
+      if (gallery) data.gallery = gallery;
       return data;
     }
 
