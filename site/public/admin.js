@@ -518,7 +518,7 @@
       addBtn.type = 'button';
       addBtn.className = 'btn btn-pink';
       addBtn.textContent = '+ New Post';
-      addBtn.style.marginTop = '0.75rem';
+      addBtn.style.marginBottom = '1.5rem';
       addBtn.addEventListener('click', () => {
         const newIdx = items.length + list.querySelectorAll('.post-form').length; // Estimate index
         const newCard = document.createElement('div');
@@ -636,11 +636,11 @@
           }, 2000);
         });
 
-        list.appendChild(newCard);
+        list.insertBefore(newCard, list.firstChild);
       });
-      
-      container.appendChild(list);
+
       container.appendChild(addBtn);
+      container.appendChild(list);
     }
 
     // Save / Publish
