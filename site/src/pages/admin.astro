@@ -138,29 +138,10 @@ const meta = {
     }
     .tab-pane { display: none; }
     .tab-pane.active { display: block; }
-    .admin-form label {
-      display: block;
-      margin-bottom: 0.35rem;
-      font-family: var(--font-body);
-      font-size: 0.9rem;
-      color: var(--ink-soft);
-    }
-    .admin-form input, .admin-form textarea, .admin-form select {
-      display: block;
-      width: 100%;
-      padding: 0.5rem 0.6rem;
-      border: 1px solid var(--grey-line);
-      border-radius: 2px;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      background: #fff;
-      box-sizing: border-box;
-    }
-    .admin-form input:focus, .admin-form textarea:focus, .admin-form select:focus {
-      outline: none;
-      border-color: var(--pink);
-      box-shadow: 0 0 0 2px rgba(255,0,102,0.1);
-    }
+    /* Input/select/textarea/label/radio/checkbox styling for .admin-form
+       and the dynamically-rendered tabs now lives in the site-wide form
+       system (src/styles/global.css) so the admin panel matches the rest
+       of the site instead of having its own separate look. */
     .tour-preview, .post-preview {
       max-width: 200px;
       max-height: 150px;
