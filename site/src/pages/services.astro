@@ -14,17 +14,42 @@ const services = [
 ---
 <Base title={meta.title} description={meta.description}>
   <section class="section">
-    <div class="wrap measure">
+    <div class="wrap">
       <p class="eyebrow">Services</p>
       <h1>What I Offer</h1>
-      <p class="lede" style="margin: 1rem 0 2rem;">Everything you want in a private companion, tailored to you.</p>
-      <img src="/images/services.webp" alt="Morgan Alexander" style="max-width:320px; height:auto; border-radius:6px; margin:0 0 2.5rem;" loading="eager" />
-      <ul class="price-list">
-        {services.map((s) => <li><span>{s}</span></li>)}
-      </ul>
-      <div class="prose" style="margin-top:2.5rem;">
-        <p>I offer many more services to accommodate the unique needs of my clients. Please call me or put your questions in your appointment request form. My number is <a href="tel:+19453972900">945-397-2900</a>.</p>
+      <p class="lede" style="margin: 1rem 0 2.5rem;">Everything you want in a private companion, tailored to you.</p>
+      <div class="services-layout">
+        <div class="services-photo">
+          <img src="/images/services.webp" alt="Morgan Alexander" style="width:100%; height:auto; border-radius:6px;" loading="eager" />
+        </div>
+        <div class="services-list">
+          <ul class="price-list">
+            {services.map((s) => <li><span>{s}</span></li>)}
+          </ul>
+          <div class="prose" style="margin-top:2rem;">
+            <p>I offer many more services to accommodate the unique needs of my clients. Please call me or put your questions in your appointment request form. My number is <a href="tel:+19453972900">945-397-2900</a>.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
+  <style>
+    .services-layout {
+      display: flex;
+      gap: 3rem;
+      align-items: flex-start;
+    }
+    .services-photo {
+      flex: 0 0 340px;
+      max-width: 340px;
+    }
+    .services-list {
+      flex: 1;
+      min-width: 0;
+    }
+    @media (max-width: 720px) {
+      .services-layout { flex-direction: column; gap: 2rem; }
+      .services-photo { flex-basis: auto; max-width: 320px; }
+    }
+  </style>
 </Base>
