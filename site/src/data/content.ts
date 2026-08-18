@@ -5,6 +5,7 @@ import ratesRaw from './rates.json';
 import toursRaw from './tours.json';
 import postsRaw from './posts.json';
 import galleryRaw from './gallery.json';
+import servicesRaw from './services.json';
 
 export type Post = {
   slug: string;
@@ -54,3 +55,4 @@ export const tours = toursRaw as unknown as Tour[];
 export const posts = (postsRaw as unknown as { posts: Post[]; categories: Record<string, string> }).posts;
 export const categories = (postsRaw as unknown as { posts: Post[]; categories: Record<string, string> }).categories;
 export const gallery = galleryRaw as unknown as GalleryPhoto[];
+export const services = servicesRaw as unknown as string[];

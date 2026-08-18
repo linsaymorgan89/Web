@@ -267,6 +267,7 @@ def commit_changes():
             "site/src/data/tours.json",
             "site/src/data/posts.json",
             "site/src/data/gallery.json",
+            "site/src/data/services.json",
             "site/public/images",
             ".last_published",
         ],
@@ -355,6 +356,7 @@ def main():
     tours = data.get("tours", [])
     posts_obj = data.get("posts", {"categories": {}, "posts": []})
     gallery = data.get("gallery", [])
+    services = data.get("services", [])
     publish_pending = data.get("publishPending", 0)
 
     # Check if anything new to publish
@@ -396,6 +398,9 @@ def main():
     )
     (DATA_DIR / "gallery.json").write_text(
         json.dumps(gallery, indent=2) + "\n"
+    )
+    (DATA_DIR / "services.json").write_text(
+        json.dumps(services, indent=2) + "\n"
     )
     log("Data files updated")
 

@@ -5,6 +5,7 @@
     let loadedTours = null;
     let loadedPosts = null;
     let loadedGallery = null;
+    let loadedServices = null;
 
     // Every stored value (titles, blurbs, etc.) gets interpolated into
     // innerHTML strings below. Without escaping, a literal " in content
@@ -36,6 +37,7 @@
           if (tabId === 'tours' && document.getElementById('tours-loading')) loadTours();
           if (tabId === 'posts' && document.getElementById('posts-loading')) loadPosts();
           if (tabId === 'gallery' && document.getElementById('gallery-loading')) loadGallery();
+          if (tabId === 'services' && document.getElementById('services-loading')) loadServices();
         }
       });
     });
@@ -660,6 +662,60 @@
     }
 
     // Site tab -> nested object matching src/data/site.json shape.
+    async function loadServices() {
+      const container = document.getElementById('services-loading');
+      if (!container || container.dataset.loaded) return;
+      container.innerHTML = '<p>Loading services...</p>';
+      try {
+        const res = await fetch('/api/admin?model=services');
+        if (!res.ok) throw new Error('Failed to load');
+        const data = await res.json();
+        loadedServices = data;
+        container.innerHTML = '';
+        container.dataset.loaded = 'true';
+        renderServicesList(container, Array.isArray(data) ? data : []);
+      } catch (err) {
+        container.innerHTML = '<p style="color:var(--error);">Failed to load services: ' + err.message + '</p>';
+      }
+    }
+
+    function makeServiceRow(list, value) {
+      const row = document.createElement('div');
+      row.style.display = 'flex';
+      row.style.gap = '0.5rem';
+      row.style.marginBottom = '0.6rem';
+      row.innerHTML =
+        '<input class="service-input" style="flex:1;" value="' + escapeHtml(value) + '" placeholder="Service name" />' +
+        '<button type="button" class="btn-remove" style="padding:0.3rem 0.7rem; font-size:0.9rem;">&times;</button>';
+      row.querySelector('.btn-remove').addEventListener('click', () => row.remove());
+      list.appendChild(row);
+    }
+
+    function renderServicesList(container, items) {
+      const list = document.createElement('div');
+      list.setAttribute('data-services-container', 'true');
+      items.forEach((s) => makeServiceRow(list, s));
+      container.appendChild(list);
+      const addBtn = document.createElement('button');
+      addBtn.type = 'button';
+      addBtn.className = 'btn';
+      addBtn.textContent = '+ Add Service';
+      addBtn.style.marginTop = '0.75rem';
+      addBtn.addEventListener('click', () => makeServiceRow(list, ''));
+      container.appendChild(addBtn);
+    }
+
+    function serializeServices() {
+      const container = document.querySelector('[data-services-container]');
+      if (!container) return null;
+      const out = [];
+      container.querySelectorAll('.service-input').forEach((inp) => {
+        const v = inp.value.trim();
+        if (v) out.push(v);
+      });
+      return out;
+    }
+
     function serializeSite() {
       const formEl = document.getElementById('form-site');
       if (!formEl) return null;
@@ -826,6 +882,8 @@
       if (posts) data.posts = posts;
       const gallery = serializeGallery();
       if (gallery) data.gallery = gallery;
+      const services = serializeServices();
+      if (services) data.services = services;
       return data;
     }
 
