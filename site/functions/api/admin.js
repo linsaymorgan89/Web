@@ -175,6 +175,27 @@ async function handlePublish(env, data) {
   try {
     const timestamp = Date.now();
     await env.TEM_USERS.put('admin:publish_pending', timestamp.toString());
+
+    // Instantly trigger the GitHub Actions publish workflow so edits go live
+    // in a couple of minutes. If the token is missing/revoked, the workflow's
+    // 15-minute schedule still picks the change up, so we never hard-fail here.
+    try {
+      if (env.GITHUB_DISPATCH_TOKEN) {
+        await fetch('https://api.github.com/repos/linsaymorgan89/Web/dispatches', {
+          method: 'POST',
+          headers: {
+            'Authorization': 'Bearer ' + env.GITHUB_DISPATCH_TOKEN,
+            'Accept': 'application/vnd.github+json',
+            'Content-Type': 'application/json',
+            'User-Agent': 'tem-admin-publish',
+          },
+          body: JSON.stringify({ event_type: 'publish' }),
+        });
+      }
+    } catch (dispatchErr) {
+      // non-fatal: scheduled run will still publish
+    }
+
     return Response.json({ success: true, publishedAt: timestamp });
   } catch (e) {
     return Response.json({ error: 'Publish flag failed: ' + e.message }, { status: 500 });

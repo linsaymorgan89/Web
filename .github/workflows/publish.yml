@@ -1,0 +1,56 @@
+name: Publish site
+
+on:
+  repository_dispatch:
+    types: [publish]
+  workflow_dispatch:
+  schedule:
+    # Safety net: publish any pending edits every 15 minutes even if the
+    # instant trigger from the admin panel ever fails to fire.
+    - cron: '*/15 * * * *'
+
+concurrency:
+  group: publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+
+      - name: Fetch admin content & prepare data
+        env:
+          EXPORT_URL: https://theeroticmorgan-6le.pages.dev/api/admin?action=export
+        run: python3 scripts/ci_publish_data.py
+
+      - name: Install & build
+        working-directory: site
+        run: |
+          bun install --frozen-lockfile || bun install
+          bun run build
+
+      - name: Deploy to Cloudflare Pages
+        working-directory: site
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: npx wrangler pages deploy dist --project-name=theeroticmorgan --branch=main --commit-dirty=true
+
+      - name: Commit synced data back to repo
+        run: |
+          git config user.name "Morgan Publish Bot"
+          git config user.email "publish-bot@theeroticmorgan.com"
+          git add site/src/data site/public/images
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "Publish: sync admin edits [skip ci]"
+            git push
+          fi
