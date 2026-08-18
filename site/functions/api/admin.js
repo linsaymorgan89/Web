@@ -98,7 +98,13 @@ async function handleGet(env, model) {
     if (model) {
       const value = await env.TEM_USERS.get('admin:' + model);
       if (value) {
-        return Response.json(JSON.parse(value));
+        const parsed = JSON.parse(value);
+        if (model === 'posts') {
+          const postsArr = Array.isArray(parsed) ? parsed : (parsed.posts || []);
+          const categories = (parsed && !Array.isArray(parsed) && parsed.categories) || postsSeed.categories;
+          return Response.json({ posts: postsArr, categories });
+        }
+        return Response.json(parsed);
       } else {
         // KV not yet seeded: return seed data from JSON files
         if (model === 'site') {
