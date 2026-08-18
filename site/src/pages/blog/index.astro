@@ -30,7 +30,7 @@ const sorted = [...posts].sort((a, b) => b.date.localeCompare(a.date));
             <time datetime={p.date}>{new Date(p.date + 'T00:00:00').toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
             &nbsp;·&nbsp; by <a href="/about-me/">Morgan Alexander</a>
           </p>
-          {p.img && <img src={p.img} alt={p.imgAlt ?? ''} width="598" height="890" style="max-width:200px; aspect-ratio:1/1; object-fit:cover; margin-bottom:1rem; border-radius:4px;" loading="lazy" />}
+          {p.img && <img src={p.img} alt={p.imgAlt ?? ''} style="max-width:220px; height:auto; margin-bottom:1rem; border-radius:4px;" loading="lazy" />}
           <p class="answer">{p.answer}</p>
           <p style="margin-top:0.75rem;"><a href={`/blog/${p.slug}/`}>Read more</a></p>
         </article>
