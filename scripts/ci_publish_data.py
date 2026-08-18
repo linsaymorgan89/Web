@@ -79,6 +79,33 @@ def main():
             p["img"] = process_image(p["img"], PUBLIC_IMAGES / "blog", p.get("slug", "post"))
 
     DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+    def load_existing(name, default):
+        p = DATA_DIR / name
+        if p.exists():
+            try:
+                return json.loads(p.read_text())
+            except Exception:
+                return default
+        return default
+
+    # site + rates: admin only manages a subset of keys. Merge admin edits over
+    # the existing file so static fields (contactFaq, goodwillFaq, goodwillPerks,
+    # etc.) that the admin panel does not edit are never dropped.
+    existing_site = load_existing("site.json", {})
+    if isinstance(existing_site, dict) and isinstance(site, dict):
+        site = {**existing_site, **site}
+    existing_rates = load_existing("rates.json", {})
+    if isinstance(existing_rates, dict) and isinstance(rates, dict):
+        rates = {**existing_rates, **rates}
+
+    # posts export is a bare array (no categories). Preserve categories from the
+    # existing posts.json so blog category labels keep working.
+    existing_posts = load_existing("posts.json", {"categories": {}, "posts": []})
+    existing_cats = existing_posts.get("categories", {}) if isinstance(existing_posts, dict) else {}
+    if not posts_obj.get("categories"):
+        posts_obj["categories"] = existing_cats
+
     (DATA_DIR / "site.json").write_text(json.dumps(site, indent=2) + "\n")
     (DATA_DIR / "rates.json").write_text(json.dumps(rates, indent=2) + "\n")
     (DATA_DIR / "tours.json").write_text(json.dumps(tours, indent=2) + "\n")
