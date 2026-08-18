@@ -204,6 +204,7 @@ figure img, .photo-grid img { display: block; width: 100%; height: auto; }
 /* portrait: natural ratio so the subject's head is never cropped; fixed max height on mobile so it reads as a companion image, not a full-screen zoom */
 .portrait {
   width: 100%;
+  max-width: 420px;
   height: auto;
   aspect-ratio: auto;
   object-fit: cover;
