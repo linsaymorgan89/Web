@@ -1,14 +1,50 @@
 [
-  { "img": "/images/gallery/morgan-01.jpg", "alt": "Elegant portrait of a beautiful woman with a warm smile." },
-  { "img": "/images/gallery/morgan-02.jpg", "alt": "Elegant gallery portrait of a woman in stylish evening attire." },
-  { "img": "/images/gallery/morgan-03.jpg", "alt": "Elegant studio portrait of a woman in soft lighting." },
-  { "img": "/images/gallery/morgan-04.jpg", "alt": "Sophisticated gallery portrait of a woman in elegant pose." },
-  { "img": "/images/gallery/morgan-05.jpg", "alt": "Elegant woman posing in a tasteful gallery portrait." },
-  { "img": "/images/gallery/morgan-06.jpg", "alt": "Portrait of Morgan in her favorite lingerie set." },
-  { "img": "/images/gallery/morgan-07.jpg", "alt": "Casual at-home portrait, natural light." },
-  { "img": "/images/gallery/morgan-08.jpg", "alt": "Evening wear portrait with soft pink tones." },
-  { "img": "/images/gallery/morgan-09.jpg", "alt": "Relaxed bedroom portrait." },
-  { "img": "/images/gallery/morgan-10.jpg", "alt": "Full-length portrait in heels." },
-  { "img": "/images/gallery/morgan-11.jpg", "alt": "Mirror selfie portrait." },
-  { "img": "/images/gallery/morgan-12.jpg", "alt": "Close-up portrait, soft focus." }
+  {
+    "img": "/images/gallery/morgan-01.jpg",
+    "alt": "Elegant portrait of a beautiful woman with a warm smile."
+  },
+  {
+    "img": "/images/gallery/morgan-02.jpg",
+    "alt": "Elegant gallery portrait of a woman in stylish evening attire."
+  },
+  {
+    "img": "/images/gallery/morgan-03.jpg",
+    "alt": "Elegant studio portrait of a woman in soft lighting."
+  },
+  {
+    "img": "/images/gallery/morgan-04.jpg",
+    "alt": "Sophisticated gallery portrait of a woman in elegant pose."
+  },
+  {
+    "img": "/images/gallery/morgan-05.jpg",
+    "alt": "Elegant woman posing in a tasteful gallery portrait."
+  },
+  {
+    "img": "/images/gallery/morgan-06.jpg",
+    "alt": "Portrait of Morgan in her favorite lingerie set."
+  },
+  {
+    "img": "/images/gallery/morgan-07.jpg",
+    "alt": "Casual at-home portrait, natural light."
+  },
+  {
+    "img": "/images/gallery/morgan-08.jpg",
+    "alt": "Evening wear portrait with soft pink tones."
+  },
+  {
+    "img": "/images/gallery/morgan-09.jpg",
+    "alt": "Relaxed bedroom portrait."
+  },
+  {
+    "img": "/images/gallery/morgan-10.jpg",
+    "alt": "Full-length portrait in heels."
+  },
+  {
+    "img": "/images/gallery/morgan-11.jpg",
+    "alt": "Mirror selfie portrait."
+  },
+  {
+    "img": "/images/gallery/morgan-12.jpg",
+    "alt": "Close-up portrait, soft focus."
+  }
 ]

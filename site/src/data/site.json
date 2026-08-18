@@ -7,7 +7,7 @@
     "tagline": "one time, forever"
   },
   "home": {
-    "eyebrow": "Dallas, Texas · Independent",
+    "eyebrow": "Dallas, Texas \u00b7 Independent",
     "lede": "Class, style, laughter, and a night you will not forget. Dinner dates, nights on the town, and our most memorable time together, in private."
   },
   "contactFaq": [
@@ -30,8 +30,8 @@
       "One single payment of $50 for lifetime access. No recurring charges, ever."
     ],
     [
-      "Why can’t I pay with a card?",
-      "Because of the adult nature of the content, Stripe doesn’t allow credit card payments, so payments are made directly via Zelle, Venmo, CashApp, PayPal, or Apple Pay."
+      "Why can\u2019t I pay with a card?",
+      "Because of the adult nature of the content, Stripe doesn\u2019t allow credit card payments, so payments are made directly via Zelle, Venmo, CashApp, PayPal, or Apple Pay."
     ],
     [
       "What do I get with my membership?",
