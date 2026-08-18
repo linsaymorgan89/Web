@@ -4,3 +4,4 @@ site/.astro/
 site/.wrangler/
 .wrangler/
 site/node_modules/
+publish.log
